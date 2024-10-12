@@ -353,7 +353,7 @@ footer {
 }
 
 .contact-form button:hover {
-    background-color: #2980b9;
+    background-color: #dbbe5e;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
