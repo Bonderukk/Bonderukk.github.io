@@ -65,14 +65,32 @@ p {
     position: absolute;
     top: 10%;
     left: 3%;
-    transform: translate(-100%, -50%);
+    transform: translateX(0);  /* Remove the -100% translation */
     color: white;
-    max-width: 30%;
-    background-color: rgba(28, 35, 49, 0.8); /* Deep blue with opacity */
+    max-width: 40%;  /* Increase max-width for better readability */
+    background-color: rgba(28, 35, 49, 0.8);
     padding: 1.25rem;
     border-radius: 0.5rem;
     animation: slideIn 1s ease-out forwards;
-    font-family: 'Satoshi', sans-serif; /* Apply Satoshi font */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text-overlay h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.text-overlay h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+.text-overlay p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ecf0f1; /* Lighter color for better visibility */
 }
 
 .service-boxes {
@@ -744,4 +762,29 @@ strong, b {
     opacity: 1;
     transform: translateX(0);
     visibility: visible;  /* Make the element visible when active */
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .image-section {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .image-section img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .text-overlay {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: rgba(28, 35, 49, 0.9);
+    }
 }
