@@ -721,3 +721,27 @@ strong, b {
 .fadeInUp {
     animation: fadeInUp 0.5s ease-out forwards;
 }
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(20px);  /* Start just off-screen to the right */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    visibility: hidden;  /* Hide the element initially */
+}
+
+.slide-in-right.active {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;  /* Make the element visible when active */
+}

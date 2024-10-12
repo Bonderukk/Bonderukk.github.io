@@ -49,3 +49,24 @@ if ('scrollRestoration' in history) {
     if (squareWrapper) {
         squareObserver.observe(squareWrapper);
     }
+
+    // Add this to your existing JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '-50px 0px -50px 0px'  // Trigger earlier
+        });
+
+        // Observe each header with the 'slide-in-right' class
+        document.querySelectorAll('.slide-in-right').forEach(header => {
+            headerObserver.observe(header);
+        });
+    });
