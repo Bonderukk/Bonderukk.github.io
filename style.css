@@ -1,9 +1,42 @@
+:root {
+  /* Primary colors */
+  --primary-dark: #1c2331;
+  --primary-light: #f0f2f5;
+  
+  /* Secondary colors */
+  --secondary-dark: #34495e;
+  --secondary-light: #ecf0f1;
+  
+  /* Accent colors */
+  --accent-blue: #3498db;
+  --accent-gold: #a08a41;  /* Added this line */
+  
+  /* Text colors */
+  --text-dark: #333333;
+  --text-light: #ffffff;
+  --text-muted: #555555;
+  
+  /* Background colors */
+  --bg-light-gray: #e6e6e6;
+  --bg-lighter-gray: #f0f0f0;
+  --bg-lightest-gray: #f7f9fc;
+  --bg-dark-gray: #d9d9d9;
+  
+  /* Overlay colors */
+  --overlay-dark: rgba(28, 35, 49, 0.8);
+  --overlay-light: rgba(255, 255, 255, 0.1);
+  
+  /* Shadow color */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Example of using these variables */
 body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f2f5;
-    color: #333333;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-light);
+  color: var(--text-dark);
 }
 
 .top-stripe {
@@ -158,8 +191,8 @@ p {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
-    background-color: #1c2331;
-    color: #ffffff;
+    background-color: var(--primary-dark);
+    color: var(--text-light);
     box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
@@ -191,7 +224,7 @@ p {
 
 .nav-links a:hover,
 .nav-links a:focus {
-    background-color: #a08a41;
+    background-color: var(--accent-gold);
     color: #ffffff;
 }
 
@@ -212,10 +245,13 @@ p {
 }
 
 .name {
-    font-family: 'Dancing Script', cursive;
-    font-weight: 700;
-    font-size: 2rem;
+    font-family: 'Roboto Slab', serif; /* Changed font family */
+    font-weight: 900; /* Increased font weight for extra thickness */
+    font-size: 2.25rem; /* Slightly increased font size */
     color: #ffffff;
+    text-transform: uppercase; /* Optional: makes the text all caps for added emphasis */
+    letter-spacing: 1px; /* Optional: adds slight spacing between letters */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: adds a subtle shadow for depth */
 }
 
 .name-link {
@@ -224,18 +260,18 @@ p {
 }
 
 .name-link:hover {
-    color: #3498db; /* Or any color you prefer for hover state */
+    color: var(--accent-gold); /* Or any color you prefer for hover state */
 }
 
 .contact-btn {
-    background-color: #a08a41;
+    background-color: var(--accent-gold);
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     transition: background-color 0.3s ease;
 }
 
 .contact-btn:hover {
-    background-color: #2980b9;
+    background-color: var(--accent-gold);
     color: #ffffff;
 }
 
@@ -258,7 +294,7 @@ footer {
 
 .contact-form h2 {
     margin-bottom: 1.5rem;
-    color: #c9bc10;
+    color: var(--accent-gold);
     font-size: 2rem;
     text-align: center;
 }
@@ -291,7 +327,7 @@ footer {
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--accent-gold);
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
 }
 
@@ -301,7 +337,7 @@ footer {
 }
 
 .contact-form button {
-    background-color: #3498db;
+    background-color: var(--accent-gold);
     color: #ffffff;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -358,7 +394,7 @@ html {
 }
 
 .section-title {
-    color: #46688a;;
+    color: #1c2331;
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -398,7 +434,7 @@ html {
 
 .resources-section h2 {
     font-size: 2.5rem;
-    color: #fbde7c;
+    color: #333;
     margin-bottom: 1rem;
 }
 
@@ -556,7 +592,7 @@ html {
 
 .story-box {
     flex-basis: calc(33.333% - 2rem);
-    background-color: #ffffff;
+    background-color: var(--primary-dark);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 2rem;
@@ -565,12 +601,12 @@ html {
 }
 
 .story-box h3 {
-    color: #333333; /* Darker color for headings */
+    color: #ffffff; /* Darker color for headings */
     margin-bottom: 1rem;
 }
 
 .story-box p {
-    color: #555555; /* Darker color for better readability */
+    color: #faf3f3; /* Darker color for better readability */
     line-height: 1.6;
 }
 
