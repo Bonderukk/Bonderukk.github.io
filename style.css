@@ -789,8 +789,8 @@ strong, b {
 
 .slide-in-right {
     opacity: 0;
-    transform: translateX(20px);  /* Start just off-screen to the right */
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(30px);  /* Start just off-screen to the right */
+    transition: opacity 1.3s ease, transform 1.3s ease;
     visibility: hidden;  /* Hide the element initially */
 }
 
