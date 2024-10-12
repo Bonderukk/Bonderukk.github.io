@@ -245,8 +245,8 @@ p {
 }
 
 .name {
-    font-family: 'Roboto Slab', serif; /* Changed font family */
-    font-weight: 900; /* Increased font weight for extra thickness */
+    font-family: 'Roboto Slab'; /* Changed font family */
+    font-weight: 500; /* Increased font weight for extra thickness */
     font-size: 2.25rem; /* Slightly increased font size */
     color: #ffffff;
     text-transform: uppercase; /* Optional: makes the text all caps for added emphasis */
@@ -328,7 +328,7 @@ footer {
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--accent-gold);
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 0 0 2px #dbbe5e;;
 }
 
 .contact-form textarea {
