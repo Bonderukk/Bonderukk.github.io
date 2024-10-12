@@ -84,7 +84,7 @@ p {
 .text-overlay h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: #3498db;
+    color: white;
 }
 
 .text-overlay p {
@@ -129,7 +129,7 @@ p {
 }
 
 .turquoise {
-    background-color: #14045c; /* A rich, elegant turquoise */
+    background-color: #34495e; /* A rich, elegant turquoise */
 }
 
 .light-gray {
@@ -191,7 +191,7 @@ p {
 
 .nav-links a:hover,
 .nav-links a:focus {
-    background-color: #3498db;
+    background-color: #a08a41;
     color: #ffffff;
 }
 
@@ -228,7 +228,7 @@ p {
 }
 
 .contact-btn {
-    background-color: #3498db;
+    background-color: #a08a41;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     transition: background-color 0.3s ease;
@@ -258,7 +258,7 @@ footer {
 
 .contact-form h2 {
     margin-bottom: 1.5rem;
-    color: #3498db;
+    color: #c9bc10;
     font-size: 2rem;
     text-align: center;
 }
@@ -358,7 +358,7 @@ html {
 }
 
 .section-title {
-    color: #3498db;
+    color: #46688a;;
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -398,7 +398,7 @@ html {
 
 .resources-section h2 {
     font-size: 2.5rem;
-    color: #1c2331;
+    color: #fbde7c;
     margin-bottom: 1rem;
 }
 
