@@ -46,23 +46,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // New code for story boxes animation
+    // Modify the story box animation code
     const storyBoxObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                if (entry.target.classList.contains('left-box')) {
-                    entry.target.classList.add('left-box-animation');
-                } else if (entry.target.classList.contains('middle-box')) {
-                    entry.target.classList.add('middle-box-animation');
-                } else if (entry.target.classList.contains('right-box')) {
-                    entry.target.classList.add('right-box-animation');
+                entry.target.style.opacity = '1';
+                if (window.innerWidth <= 844) {  // For smaller screens, including iPhone 12 Pro
+                    entry.target.classList.add('fadeInUp');
+                } else {
+                    if (entry.target.classList.contains('left-box')) {
+                        entry.target.classList.add('left-box-animation');
+                    } else if (entry.target.classList.contains('middle-box')) {
+                        entry.target.classList.add('middle-box-animation');
+                    } else if (entry.target.classList.contains('right-box')) {
+                        entry.target.classList.add('right-box-animation');
+                    }
                 }
             } else {
-                entry.target.classList.remove('left-box-animation', 'middle-box-animation', 'right-box-animation');
+                entry.target.style.opacity = '0';
+                entry.target.classList.remove('left-box-animation', 'middle-box-animation', 'right-box-animation', 'fadeInUp');
             }
         });
     }, {
-        threshold: 0.1 // Adjust this value to control when the animation triggers
+        threshold: 0.1
     });
 
     // Observe each story box

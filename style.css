@@ -501,3 +501,142 @@ p, li {
 strong, b {
     font-weight: 700;
 }
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+    .text-overlay {
+        max-width: 40%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .text-overlay {
+        max-width: 50%;
+    }
+
+    .service-boxes {
+        flex-wrap: wrap;
+    }
+
+    .box {
+        flex-basis: calc(50% - 0.625rem);
+    }
+
+    .resource-box {
+        flex-basis: calc(50% - 2rem);
+    }
+
+    .story-box {
+        flex-basis: calc(50% - 2rem);
+    }
+}
+
+@media screen and (max-width: 844px) {
+    .story-box {
+        flex-basis: 100%;
+        margin-bottom: 2rem;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .image-section {
+        height: auto;
+    }
+
+    .text-overlay {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        max-width: 100%;
+        background-color: rgba(28, 35, 49, 0.9);
+        padding: 2rem;
+        border-radius: 0;
+    }
+
+    .service-boxes {
+        flex-direction: column;
+    }
+
+    .box {
+        flex-basis: 100%;
+        margin: 0.625rem 0;
+    }
+
+    .resource-box {
+        flex-basis: 100%;
+    }
+
+    .story-box {
+        flex-basis: 100%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .about-list li {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .name {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.5rem;
+    }
+
+    .contact-form button {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInUp {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
