@@ -195,9 +195,18 @@ p {
 
 .name {
     font-family: 'Dancing Script', cursive;
-    font-weight: 700; /* Make it bold */
+    font-weight: 700;
     font-size: 2rem;
     color: #ffffff;
+}
+
+.name-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.name-link:hover {
+    color: #3498db; /* Or any color you prefer for hover state */
 }
 
 .contact-btn {
