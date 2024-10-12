@@ -3,126 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Facility Booking</title>
+    <title>Kouč & Expert</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Sports Facility Booking</h1>
-        <form id="bookingForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="name">Name: *</label>
-                    <input type="text" id="name" name="name" required>
-                    <span class="error" id="nameError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="surname">Surname: *</label>
-                    <input type="text" id="surname" name="surname" required>
-                    <span class="error" id="surnameError"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Gender: *</label>
-                    <div class="gender-options">
-                        <label class="gender-option">
-                            <input type="radio" id="male" name="gender" value="male" required>
-                            <span class="radio-button"></span>
-                            Male
-                        </label>
-                        <label class="gender-option">
-                            <input type="radio" id="female" name="gender" value="female" required>
-                            <span class="radio-button"></span>
-                            Female
-                        </label>
-                    </div>
-                    <span class="error" id="genderError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="birthdate">Date of Birth: *</label>
-                    <input type="date" id="birthdate" name="birthdate" required>
-                    <span class="error" id="birthdateError"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="age">Age: *</label>
-                    <input type="number" id="age" name="age" required readonly>
-                    <span class="error" id="ageError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email: *</label>
-                    <input type="email" id="email" name="email" required>
-                    <span class="error" id="emailError"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="phone">Phone Number: *</label>
-                    <div class="phone-input">
-                        <select id="phonePrefix" name="phonePrefix">
-                            <option value="+421">+421</option>
-                            <option value="+420">+420</option>
-                        </select>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="facility">Facility Type: *</label>
-                    <select id="facility" name="facility" required>
-                        <option value="">Select Facility</option>
-                        <option value="indoor">Indoor</option>
-                        <option value="outdoor">Outdoor</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="sport">Sport: *</label>
-                    <select id="sport" name="sport" required>
-                        <option value="">Select Sport</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="equipment">Equipment: *</label>
-                    <select id="equipment" name="equipment" required>
-                        <option value="">Select Equipment</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Additional Services:</label>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="coach" name="services" value="coach">
-                    <label for="coach">Coach</label>
-                    <input type="checkbox" id="refreshments" name="services" value="refreshments">
-                    <label for="refreshments">Refreshments</label>
-                    <input type="checkbox" id="other" name="services" value="other">
-                    <label for="other">Other</label>
-                </div>
-                <input type="text" id="otherService" name="otherService" style="display: none;">
-            </div>
-            <div class="form-group">
-                <label for="comments">Comments:</label>
-                <textarea id="comments" name="comments" rows="3"></textarea>
-            </div>
-            <button type="submit">Submit Booking</button>
-        </form>
-        
-        <!-- Add this new section after the form -->
-        <div class="hidden-name-section">
-            <button type="button" id="revealNameBtn">Reveal Hidden Name</button>
-            <input type="text" id="hiddenName" value="Matus Bednarik" style="display: none;" readonly>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="name">Stano Sladek</div>
         </div>
-        
-    </div>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <h2>Booking Summary</h2>
-            <div id="summary"></div>
-            <button id="confirmBooking">Confirm Booking</button>
-            <button id="closeModal">Close</button>
+        <ul class="nav-links">
+            <li><a href="#about">O mne</a></li>
+            <li><a href="#services">Služby</a></li>
+            <li><a href="https://www.linkedin.com/in/stanislav-sladek/"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="#contact" class="contact-btn">KONTAKT</a></li>
+        </ul>
+    </nav>
+
+    <div class="image-section" id="about">
+        <img src="stano_better.jpg" alt="Expert Image">
+        <div class="text-overlay">
+            <h1>KOUČ & EXPERT</h1>
+            <h2>Stano Sladek</h2>
+            <p>
+                Ako koučka a lektorka, expertka na teenagerov a zdravé sebavedomie žien vo vzťahoch pomáham budovať rešpektujúce vzťahy, nastaviť si zdravé osobné hranice, objaviť vlastnú sebahodnotu a sebavedomie, naučiť sa podporujúcou komunikáciou dosiahnuť prepojenie generácií a prerámcovať neúžitočné vzorce vo vzťahoch.
+            </p>
         </div>
     </div>
-    <script src="scripts.js"></script>
+
+    <div class="service-boxes" id="services">
+        <div class="box turquoise">Life koučing pre rodičov a dospelých</div>
+        <div class="box light-gray">Koučing teenagerov a prepájanie generácií</div>
+        <div class="box dark-gray">Efektívna komunikácia a rešpektujúce vzťahy pre skupiny</div>
+        <div class="box light-gray">Rodinné konštelácie s figúrkami</div>
+    </div>
+
+    <section class="about-me" id="about">
+        <h2 class="section-title">Prečo ti pomôžem práve ja?</h2>
+        <div class="about-content">
+            <ul class="about-list">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+                <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</li>
+                <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</li>
+                <li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</li>
+                <li>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="resources-section">
+        <h2>Ready for Your Transformation?</h2>
+        <p>These 3 powerful resources will help you tackle daily challenges, maximize your potential, and create the life you truly desire.</p>
+        <div class="resource-boxes">
+            <div class="resource-box">
+                <img src="confidence.jpg" alt="How to Believe in Yourself">
+                <h3>How to Believe in Yourself</h3>
+                <p>Soul Seekers, learn how to eliminate self-doubt and believe in yourself.</p>
+            </div>
+            <div class="resource-box">
+                <img src="speaker.jpg" alt="Become a Life Coach">
+                <h3>Become a Life Coach</h3>
+                <p>Trainers & Coaches, learn how to become a successful life coach today!</p>
+            </div>
+            <div class="resource-box">
+                <img src="success.jpg" alt="How to Be Successful">
+                <h3>How to Be Successful</h3>
+                <p>Goal Achievers, get ready to transform yourself for success... one day at a time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section Above Footer -->
+    <section class="story-section">
+        <h2 class="section-title">Môj príbeh</h2>
+        <div class="story-boxes">
+            <div class="story-box left-box">Dôkladne poznám svet teenagerov...</div>
+            <div class="story-box middle-box">Ako matka dnes už dospelej dcéry...</div>
+            <div class="story-box right-box">Cez skúsenosti v práci s teenagermi...</div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="contact-form">
+            <h2>Neváhaj ma kontaktovať</h2>
+            <form action="send_email.php" method="post">
+                <input type="text" name="name" placeholder="Tvoje meno*" required>
+                <input type="email" name="email" placeholder="Tvoj email*" required>
+                <input type="tel" name="phone" placeholder="Telefónny kontakt">
+                <input type="text" name="subject" placeholder="Predmet *" required>
+                <textarea name="message" placeholder="Tvoja správa*" required></textarea>
+                <button type="submit">Odoslať</button>
+            </form>
+        </div>
+    </footer>
+
+
 </body>
 </html>
