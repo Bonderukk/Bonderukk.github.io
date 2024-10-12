@@ -1,5 +1,5 @@
 body {
-    font-family: 'Satoshi', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f2f5;
@@ -148,9 +148,44 @@ p {
     z-index: 1000;
 }
 
-.nav-left {
+.nav-links {
     display: flex;
-    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 1rem; /* Reduced margin for tighter spacing */
+
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500; /* Medium weight for nav links */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    display: inline-block; /* This allows padding to work on inline elements */
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+/* Style for the LinkedIn icon */
+.nav-links a.linkedin-icon {
+    padding: 0.5rem;
+    font-size: 1.2rem; /* Slightly larger for the icon */
+}
+
+.nav-links a.linkedin-icon:hover,
+.nav-links a.linkedin-icon:focus {
+    background-color: #0077b5; /* LinkedIn's brand color */
 }
 
 .logo {
@@ -160,31 +195,9 @@ p {
 
 .name {
     font-family: 'Dancing Script', cursive;
+    font-weight: 700; /* Make it bold */
     font-size: 2rem;
     color: #ffffff;
-}
-
-.nav-links {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links li {
-    margin-left: 2rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    font-size: 1rem;
-}
-
-.nav-links a:hover {
-    color: #3498db;
 }
 
 .contact-btn {
@@ -252,6 +265,7 @@ footer {
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Adjust this value based on your navbar height */
 }
 
 .about-me {
@@ -401,6 +415,8 @@ html {
     background-color: #f7f9fc;
     padding: 4rem 2rem;
     text-align: center;
+    overflow-x: hidden; /* Add this line */
+    scroll-margin-top: 80px; /* Adjust this value based on your navbar height */
 }
 
 .story-boxes {
@@ -416,39 +432,28 @@ html {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 2rem;
-    opacity: 0; /* Start with 0 opacity */
-    transition: opacity 1s ease; /* Smooth transition for opacity */
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 
 @keyframes slideInFromLeft {
     from {
-        transform: translateX(-100%);
+        transform: translate3d(-100%, 0, 0);
         opacity: 0;
     }
     to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInFromBottom {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
 }
 
 @keyframes slideInFromRight {
     from {
-        transform: translateX(100%);
+        transform: translate3d(100%, 0, 0);
         opacity: 0;
     }
     to {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
     }
 }
@@ -463,4 +468,36 @@ html {
     .right-box-animation {
         animation: slideInFromBottom 1s forwards;
     }
+}
+
+.story-box {
+    flex-basis: calc(33.333% - 2rem);
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.story-box h3 {
+    color: #333333; /* Darker color for headings */
+    margin-bottom: 1rem;
+}
+
+.story-box p {
+    color: #555555; /* Darker color for better readability */
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700; /* Changed from 500 to 700 for bolder text */
+}
+
+p, li {
+    font-weight: 400;
+}
+
+strong, b {
+    font-weight: 700;
 }
