@@ -95,6 +95,7 @@ p {
 }
 
 .text-overlay {
+
     position: absolute;
     top: 10%;
     left: 3%;
@@ -109,13 +110,13 @@ p {
 }
 
 .text-overlay h1 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: #ffffff;
 }
 
 .text-overlay h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: white;
 }
@@ -162,7 +163,7 @@ p {
 }
 
 .turquoise {
-    background-color: #34495e; /* A rich, elegant turquoise */
+    background-color: var(--primary-dark); /* A rich, elegant turquoise */
 }
 
 .light-gray {
@@ -171,7 +172,7 @@ p {
 }
 
 .dark-gray {
-    background-color: #34495e; /* A sophisticated dark gray */
+    background-color: var(--primary-dark); /* A sophisticated dark gray */
 }
 
 
@@ -245,7 +246,7 @@ p {
 }
 
 .name {
-    font-family: 'Roboto Slab'; /* Changed font family */
+    font-family: 'Montserrat', sans-serif;  /* Changed font family */
     font-weight: 500; /* Increased font weight for extra thickness */
     font-size: 2.25rem; /* Slightly increased font size */
     color: #ffffff;
