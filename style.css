@@ -275,10 +275,10 @@ p {
     color: #ffffff;
 }
 
-footer {
+.contact_bg {
     background-color: #051950;
     color: #ffffff;
-    padding: 2rem;
+    padding: 2rem 2rem 1rem;
     text-align: center;
     transition: background-color 1s ease;
 }
@@ -823,4 +823,43 @@ strong, b {
         box-sizing: border-box;
         background-color: rgba(28, 35, 49, 0.9);
     }
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--accent-gold);
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.copyright {
+    float:left;
+    font-family: 'Dancing Script', cursive;
+}
+.webdesign {
+    margin-left: auto; /* Ensure it stays on the right */
+}
+
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .copyright, .webdesign {
+        margin: 5px 0;
+    }
+}
+.footer-content {
+    color: #ffffff;
+    background-color: #002366;
+    display: flex;
+    justify-content: space-between; /* Add this line */
+    align-items: center; /* Add this line */
+    padding: 0 1rem; /* Add padding for spacing */
+    max-width: auto; /* Adjust based on your layout */
 }
