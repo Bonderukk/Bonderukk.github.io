@@ -34,7 +34,6 @@ function initMap() {
 
     displayContainerInfo(); // This will clear and hide the container info panel
 
-    updateLegend();
 
     // Add a custom control for suggesting new containers
     L.Control.SuggestContainer = L.Control.extend({
@@ -491,11 +490,8 @@ function displayContainerInfo(container) {
 
     if (!container) {
         // No container selected, clear the info and hide the panel
-        header.innerHTML = `
-            Selected Location
-            <div class="selected-point-subheader">Click a container on the map to see details</div>
-        `;
-        infoPanel.innerHTML = '';
+
+   
 
         // Remove highlight from previously selected marker
         if (selectedMarker) {

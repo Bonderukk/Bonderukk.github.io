@@ -700,52 +700,7 @@ body {
     }
 }
 
-/* Update the map-legend styles */
-.map-legend {
-    position: absolute;
-    top: 0.5em;
-    right: 50%;
-    transform: translateX(50%); /* Center the legend horizontally */
-    z-index: 1000;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
-    font-size: 12px; /* Reduced font size for better fit */
-    line-height: 1.2;
-    display: grid;
-    grid-auto-flow: column; /* Arrange items in a row */
-    grid-gap: 10px; /* Add space between items */
-    white-space: nowrap; /* Prevent text wrapping */
-}
 
-.legend-item {
-    display: flex;
-    align-items: center;
-}
-
-.legend-color {
-    width: 12px; /* Reduced size */
-    height: 12px; /* Reduced size */
-    margin-right: 4px;
-    border-radius: 50%;
-    flex-shrink: 0; /* Prevent the color dot from shrinking */
-}
-
-/* Adjust for smaller screens */
-@media (max-width: 768px) {
-    .map-legend {
-        font-size: 10px;
-        padding: 5px;
-        grid-gap: 5px;
-    }
-    
-    .legend-color {
-        width: 10px;
-        height: 10px;
-        margin-right: 2px;
-    }
-}
 
 /* Add these styles to your existing CSS file */
 
@@ -844,6 +799,50 @@ body {
     background-color: #f4f4f4;
 }
 
+/* Update the map-legend styles */
+.map-legend {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px 12px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    font-size: 12px;
+    z-index: 1000;
+    display: flex;
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .map-legend {
+        font-size: 10px;
+        padding: 6px 8px;
+        gap: 10px;
+    }
+
+    .legend-color {
+        width: 10px;
+        height: 10px;
+        margin-right: 3px;
+    }
+}
 /* Add these styles to your existing CSS file */
 
 .suggestion-dialog {
@@ -908,4 +907,8 @@ body {
         padding: 10px 15px;
         font-size: 13px;
     }
+}
+
+.leaflet-left .leaflet-control {
+    display:none;
 }
