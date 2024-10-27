@@ -832,3 +832,57 @@ body {
     pointer-events: none;
 }
 
+.suggest-container-btn {
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.suggest-container-btn:hover {
+    background-color: #f4f4f4;
+}
+
+/* Add these styles to your existing CSS file */
+
+.suggestion-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.suggestion-dialog p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.suggestion-dialog button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.suggestion-dialog button:hover {
+    background-color: #45a049;
+}
+
+.suggestion-dialog button:last-child {
+    background-color: #f44336;
+}
+
+.suggestion-dialog button:last-child:hover {
+    background-color: #da190b;
+}

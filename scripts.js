@@ -35,6 +35,30 @@ function initMap() {
     displayContainerInfo(); // This will clear and hide the container info panel
 
     updateLegend();
+
+    // Add a custom control for suggesting new containers
+    L.Control.SuggestContainer = L.Control.extend({
+        onAdd: function(map) {
+            var btn = L.DomUtil.create('button', 'suggest-container-btn');
+            btn.innerHTML = '<i class="fas fa-plus-circle"></i> Suggest New Container';
+            L.DomEvent.on(btn, 'click', this._suggestContainer, this);
+            return btn;
+        },
+
+        _suggestContainer: function() {
+            const center = map.getCenter();
+            const zoom = map.getZoom();
+            const url = `https://www.openstreetmap.org/edit#map=${zoom}/${center.lat}/${center.lng}`;
+            window.open(url, '_blank');
+            alert("You will be redirected to OpenStreetMap. Please sign in and use their editor to add the new container location. Thank you for contributing!");
+        }
+    });
+
+    L.control.suggestContainer = function(opts) {
+        return new L.Control.SuggestContainer(opts);
+    }
+
+    L.control.suggestContainer({ position: 'topleft' }).addTo(map);
 }
 
 function getUserLocation() {
@@ -322,8 +346,65 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    const suggestContainerButton = document.getElementById('suggestContainer');
+    suggestContainerButton.addEventListener('click', function() {
+        showSuggestionDialog();
+    });
+
     // ... rest of your existing code ...
 });
+
+function showSuggestionDialog() {
+    // Create dialog elements
+    const dialog = document.createElement('div');
+    dialog.className = 'suggestion-dialog';
+    
+    const message = document.createElement('p');
+    message.textContent = 'What would you like to add?';
+    
+    const containerBtn = document.createElement('button');
+    containerBtn.textContent = 'Donation Container';
+    containerBtn.onclick = () => confirmAndRedirect('container');
+    
+    const centerBtn = document.createElement('button');
+    centerBtn.textContent = 'Recycling Center';
+    centerBtn.onclick = () => confirmAndRedirect('center');
+    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.onclick = () => document.body.removeChild(dialog);
+
+    // Assemble dialog
+    dialog.appendChild(message);
+    dialog.appendChild(containerBtn);
+    dialog.appendChild(centerBtn);
+    dialog.appendChild(cancelBtn);
+
+    // Add dialog to body
+    document.body.appendChild(dialog);
+}
+
+function confirmAndRedirect(type) {
+    const isContainer = type === 'container';
+    const confirmMessage = isContainer 
+        ? "You will be redirected to OpenStreetMap to add a new donation container. Continue?"
+        : "You will be redirected to OpenStreetMap to add a new recycling center. Continue?";
+
+    if (confirm(confirmMessage)) {
+        const center = map.getCenter();
+        const zoom = map.getZoom();
+        const url = `https://www.openstreetmap.org/edit#map=${zoom}/${center.lat}/${center.lng}`;
+        window.open(url, '_blank');
+        
+        // Remove the alert() call here
+    }
+
+    // Remove the dialog
+    const dialog = document.querySelector('.suggestion-dialog');
+    if (dialog) {
+        document.body.removeChild(dialog);
+    }
+}
 
 // Add this new function to handle getting directions
 function getDirections(lat, lon) {
@@ -504,3 +585,4 @@ document.getElementById('zoomIn').addEventListener('click', function() {
 document.getElementById('zoomOut').addEventListener('click', function() {
     map.zoomOut();
 });
+
