@@ -857,22 +857,28 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     text-align: center;
+    width: 90%; /* Set a percentage width */
+    max-width: 300px; /* Maximum width for larger screens */
 }
 
 .suggestion-dialog p {
     margin-bottom: 20px;
     font-size: 16px;
+    color: #333;
 }
 
 .suggestion-dialog button {
-    margin: 0 10px;
-    padding: 10px 20px;
+    display: block; /* Make buttons stack vertically */
+    width: 100%; /* Full width buttons */
+    margin: 10px 0; /* Vertical margin between buttons */
+    padding: 12px 20px;
     border: none;
     border-radius: 4px;
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 14px;
 }
 
 .suggestion-dialog button:hover {
@@ -881,8 +887,25 @@ body {
 
 .suggestion-dialog button:last-child {
     background-color: #f44336;
+    margin-top: 20px; /* Extra space above the cancel button */
 }
 
 .suggestion-dialog button:last-child:hover {
     background-color: #da190b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .suggestion-dialog {
+        padding: 15px;
+    }
+
+    .suggestion-dialog p {
+        font-size: 14px;
+    }
+
+    .suggestion-dialog button {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
 }
