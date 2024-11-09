@@ -1,0 +1,703 @@
+/* Base Styles */
+:root {
+    --primary-color: #008080;
+    --purple: #900cfc;
+    --purple-dark: #7209d4;  /* Darker shade for gradient */
+    --purple-light: #a23ffd; /* Lighter shade for gradient */
+    --text-color: #333333;
+    --white: #FFFFFF;
+    --accent-color: #E6F3F3;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Main Content Layout */
+.about-main {
+    padding: 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: stretch;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Left Column Styles */
+.about-left {
+    position: relative;
+    height: 100%;
+}
+
+.about-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.brand-logos {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.brand-logo {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Right Column Styles */
+.about-content {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--white);
+}
+
+.about-intro {
+    max-width: 600px;
+}
+
+.about-intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.about-intro h2 span {
+    color: var(--purple);
+}
+
+.about-intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.social-link {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--purple);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .about-left {
+        height: 50vh;
+        position: relative;
+    }
+
+    .about-content {
+        padding: 40px 20px;
+    }
+
+    .about-intro h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-left {
+        height: 40vh;
+    }
+
+    .about-intro p {
+        font-size: 1.1rem;
+    }
+}
+
+/* New Purple Section Styles */
+.institutes-section {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+    padding: 80px 0;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add subtle background pattern */
+.institutes-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, var(--purple-light) 0%, transparent 10%);
+    background-size: 30px 30px;
+    opacity: 0.1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.institutes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.institutes-content {
+    position: relative;
+}
+
+.institutes-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    position: relative;
+    padding-left: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.institutes-text::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--purple-light);
+    border-radius: 2px;
+}
+
+.institutes-text strong {
+    color: var(--white);
+    font-weight: 600;
+    border-bottom: 2px solid var(--purple-light);
+    padding-bottom: 2px;
+}
+
+.institutes-logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.institute-logo {
+    max-width: 100%;
+    height: auto;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+    padding: 15px;
+}
+
+.institute-logo:hover {
+    transform: translateY(-5px);
+    filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* Responsive Adjustments */
+@media (max-width: 968px) {
+    .institutes-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .institutes-logos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .institutes-section {
+        padding: 60px 0;
+    }
+
+    .institutes-text {
+        font-size: 1.1rem;
+    }
+
+    .institutes-logos {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .institute-logo {
+        margin: 0 auto;
+        max-width: 200px;
+    }
+}
+
+.separator {
+    background: var(--purple);
+}
+
+/* Add these styles for the offerings section */
+.offerings {
+    padding: 80px 0;
+    background-color: #900cfc;
+    color: var(--white);
+}
+
+.offerings .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.offerings h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 60px;
+}
+
+.offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.offering-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.offering-card:hover {
+    transform: translateY(-5px);
+}
+
+.offering-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.offering-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.offering-card:hover .offering-image img {
+    transform: scale(1.05);
+}
+
+.offering-content {
+    padding: 30px;
+}
+
+.offering-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.offering-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.offering-link {
+    display: inline-block;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative;
+}
+
+.offering-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.offering-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .offerings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .offerings {
+        padding: 60px 0;
+    }
+
+    .offerings h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .offerings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .offering-image {
+        height: 200px;
+    }
+
+    .offering-content {
+        padding: 20px;
+    }
+}
+
+/* Courses Section Styles */
+.courses {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Image side styling */
+.courses-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+}
+
+.courses-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.courses-image:hover img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(144, 12, 252, 0.2), transparent);
+}
+
+.decorative-shape {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 140px;
+    height: 140px;
+    border: 2px solid var(--purple);
+    border-radius: 20px;
+    z-index: -1;
+}
+
+.decorative-dots {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 80px;
+    height: 80px;
+    background-image: radial-gradient(var(--purple) 2px, transparent 2px);
+    background-size: 10px 10px;
+    opacity: 0.3;
+}
+
+/* Content side styling */
+.courses-content {
+    padding-right: 40px;
+}
+
+.courses-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.courses-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--purple);
+}
+
+.courses-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+/* Enhanced CTA Button */
+.cta-button {
+    display: inline-block;
+    position: relative;
+    padding: 15px 30px;
+    background: var(--purple);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--purple);
+    overflow: hidden;
+}
+
+.cta-button span {
+    position: relative;
+    z-index: 2;
+}
+
+.button-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: transform 0.6s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(144, 12, 252, 0.2);
+}
+
+.cta-button:hover .button-decoration {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .courses-grid {
+        gap: 40px;
+    }
+
+    .courses-content h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .courses {
+        padding: 60px 0;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .courses-content {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .courses-content h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .decorative-shape {
+        display: none;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    background: linear-gradient(135deg, #333 0%, #222 100%);
+    color: var(--white);
+    position: relative;
+}
+
+.footer-top {
+    padding: 80px 0 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+}
+
+/* Brand Section */
+.footer-brand {
+    max-width: 400px;
+}
+
+.footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.brand-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--purple);
+    transform: translateY(-3px);
+}
+
+/* Navigation Section */
+.footer-nav h4,
+.footer-contact h4 {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-nav h4::after,
+.footer-contact h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--purple);
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav ul li {
+    margin-bottom: 12px;
+}
+
+.footer-nav ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-nav ul li a:hover {
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+/* Contact Section */
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-info i {
+    margin-right: 12px;
+    color: var(--purple);
+}
+
+.contact-info a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--white);
+}
