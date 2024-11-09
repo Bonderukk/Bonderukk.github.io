@@ -1,49 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ReDress - Donation Container Locator</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helena Bednařík Ballová | Systemický Kouč</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Add these meta tags -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <button id="new-navbar-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    <nav id="vertical-navbar" class="expanded">
-        <div class="app-name">
-            <span class="initials">R</span><span class="expansion e">e</span>
-            <span class="initials">D</span><span class="expansion ress">ress</span>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/HellenaINSP/hellena-logo-Black.png" alt="Hellena Inspirations">
+                </a>
+            </div>
+            <ul>
+                <li><a href="index.html" class="active">Domov</a></li>
+                <li><a href="about.html">O mne</a></li>
+                <li><a href="systematic.html">Systemický prístup</a></li>
+                <li><a href="portDeBras.html">PortDeBras®</a></li>
+                <li><a href="akcie.html">Prehľad akcií</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Systemický prístup k životu</h1>
+                        <p class="subtitle">Som Helena Bednařík Ballová, facilitátorka systemického prístupu pre firemné tímy i jednotlivcov. Moja práca sa mi stala vášňou.</p>
+                    </div>
+                    <div class="hero-image">
+                        <img src="img/HellenaINSP/Helema.jpg" alt="Professional portrait">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-grid">
+                        <p class="about-text">Po štúdiu na Bert Hellinger Instituut Nederland v Holandsku som sa začala venovať systemickému koučingu a konšteláciam aj profesionálne. Na Slovensku som založila Inštitút systemickej práce a konštelácií, pod ktorým organizujem a vediem vzdelávanie v tejto oblasti.</p>
+                        
+                        <p class="about-text">Zároveň pôsobím ako lektorka ladného tanečno-kondičného cvičenia PortDeBras, ktoré mi v spojení s jógou umožnilo viac vnímať svoje telo. Toto všetko robím s neutíchajúcou túžbou po poznaní.</p>
+                    </div>
+                    
+                    <p class="about-highlight">Spojenie rôznych prístupov do jedného tvorí Hellena INSPIRATIONS - celok, ktorý ponúka duševnú i fyzickú harmóniu ľuďom.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Prehľad akcií</h2>
+                <div class="services-grid">
+                    <!-- ISPAK Service 1 -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <img src="img/HellenaINSP/ISPAK_black.png" alt="iSPAK" class="service-logo">
+                            <h3>PROCES ŽIVOTNEJ INTEGRÁCIE</h3>
+                        </div>
+                        <div class="service-dates">
+                            <p>10.november 2024, Bratislava</p>
+                            <p>06.október a 1.december, Trnava</p>
+                        </div>
+                        <p class="service-description">
+                            LIP (Life Integration process) je systém postavený na metóde rodinných konštelácií. Cez jedinečný zážitok ponúka možnosť pochopiť, ako vás formoval doterajší život a ako ste sa stali človekom, ktorým ste dnes.
+                        </p>
+                        <a href="#" class="service-link">Chcem vedieť viac</a>
+                    </div>
+
+                    <!-- ISPAK Service 2 -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <img src="img/HellenaINSP/ISPAK_black.png" alt="iSPAK" class="service-logo">
+                            <h3>SYSTEMICKÉ KONŠTELÁCIE</h3>
+                        </div>
+                        <div class="service-dates">
+                            <p>05.október 2024, 09. a 30. november, Bratislava</p>
+                            <p>06.október a 1.december, Trnava</p>
+                        </div>
+                        <p class="service-description">
+                            Systemické konštelácie sú hlbokou zážitkovou metódou pre každého, kto má úprimnú snahu spoznať viac seba. S ich pomocou sa môžeme pozrieť na naše vzťahy a svet okolo seba z inej perspektívy.
+                        </p>
+                        <a href="#" class="service-link">Chcem vedieť viac</a>
+                    </div>
+
+                    <!-- PortDeBras Regular Classes -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <img src="img/HellenaINSP/87246aba-ff3b-494c-8105-a57916bf90e7.JPG" alt="PortDeBras" class="service-logo">
+                            <h3>PRAVIDELNÉ HODINY</h3>
+                        </div>
+                        <div class="service-dates">
+                            <p>PortDeBras každý utorok 19:10, Bratislava</p>
+                        </div>
+                        <p class="service-description">
+                            Pozývam vás na originálny program tréningových cvičení, ktoré sú založené na plynulom ladnom pohybe spájajúcom posilňovanie a strečing v sprievode príjemnej hudby. PortDeBras patrí do skupiny body and mind, vďaka ktorému môžete rozvíjať vašu silu a flexibilitu.
+                        </p>
+                        <a href="#" class="service-link">Rezervujte si miesto</a>
+                    </div>
+
+                    <!-- PortDeBras Education -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <img src="img/HellenaINSP/logo-profil2.png" alt="MOVE Academy" class="service-logo">
+                            <h3>VZDELÁVANIE PORTDEBRAS</h3>
+                        </div>
+                        <div class="service-dates">
+                            <p>Školenia PortDeBras v MOVE Academy</p>
+                        </div>
+                        <p class="service-description">
+                            Školenia PortDeBras sú určené každému, koho oslovuje koncept body and mind cvičení spojených v ladnosti pohybu a kto by tento pohybový koncept terapie pre telo, dušu a myseľ rád šíril a učil ďalej.
+                        </p>
+                        <a href="#" class="service-link">Chcem vedieť viac</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add this section after the services section -->
+        <section id="courses" class="courses">
+            <div class="container">
+                <h2>Prehľad kurzov</h2>
+                <div class="courses-grid">
+                    <!-- Course 1 -->
+                    <div class="course-card">
+                        <div class="course-header">
+                            <img src="img/HellenaINSP/ISPAK_black.png" alt="iSPAK" class="course-logo">
+                            <div class="course-title">
+                                <h3>SYSTEMIKA V PRAXI</h3>
+                                <p class="course-duration">4 - dňový kurz</p>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Séria workshopov ponúka silný zážitok, ktorý vychádza zo systemického metodického prístupu s priamym prepojením na prax. V rámci kurzu sa oboznámite s teóriou a vyskúšate si rôzne praktické príklady cvičení, ktoré sa viažu aj na vaše životné situácie.
+                        </p>
+                        <a href="#" class="course-link">Chcem vedieť viac</a>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="course-card">
+                        <div class="course-header">
+                            <img src="img/HellenaINSP/ISPAK_black.png" alt="iSPAK" class="course-logo">
+                            <div class="course-title">
+                                <h3>VÝCVIK SYSTEMICKÝ KOUČING</h3>
+                                <p class="course-duration">12 - dňový kurz</p>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Systemický koučing je metóda koučovania, ktorá je založená na systemickom prístupe v kontexte s prostredím, v ktorom žijeme. Ste pripravení objaviť samch seba ako súčasť rôznych i väčších systémov?
+                        </p>
+                        <a href="#" class="course-link">Chcem vedieť viac</a>
+                    </div>
+
+                    <!-- Course 3 -->
+                    <div class="course-card">
+                        <div class="course-header">
+                            <img src="img/HellenaINSP/ISPAK_black.png" alt="iSPAK" class="course-logo">
+                            <div class="course-title">
+                                <h3>VÝCVIK SYSTEMICKÝCH KONŠTELÁCIÍ</h3>
+                                <p class="course-duration">15 - dňový kurz</p>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Tento kurz je určený pre každého, kto má záujem hlbšie spoznať metódu systemických konštelácií. Vďaka praktickému prístupu a prepracovanej teórii môžu účastníci využiť všetky poznatky na vlastný sebarozvoj i vo svojej profesii.
+                        </p>
+                        <a href="#" class="course-link">Chcem vedieť viac</a>
+                    </div>
+
+                    <!-- Course 4 -->
+                    <div class="course-card">
+                        <div class="course-header">
+                            <img src="img/HellenaINSP/ISPAK_black.png" alt="iSPAK" class="course-logo">
+                            <div class="course-title">
+                                <h3>DYNAMIKA SYSTÉMOV V ORGANIZÁCIÁCH</h3>
+                                <p class="course-duration">16 - dňový kurz</p>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Pokročilý kurz výcviku je určený tým, ktorí majú skúsenosti s prácou vo firmách alebo pracujú v oblasti rozvoja organizácií ako manažéri, riaditelia, konzultanti, HR manažéri či koučovia. Rovnako je vhodný pre lektorov rodinných konštelácií, ktorí chcú prebádať aj oblasť firiem a organizácií.
+                        </p>
+                        <a href="#" class="course-link">Chcem vedieť viac</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Brand Column with updated social links -->
+                    <div class="footer-brand">
+                        <img src="img/HellenaINSP/hellena-logo-white copy.png" alt="Hellena Inspirations" class="footer-logo">
+                        <p class="brand-description">
+                            Facilitátorka systemického prístupu pre firemné tímy i jednotlivcov.
+                        </p>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/helena.ballovahellenainsp" 
+                               aria-label="Facebook" 
+                               class="social-link" 
+                               target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/helena.ballova/" 
+                               aria-label="Instagram" 
+                               class="social-link" 
+                               target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/helena-bednarik-ballova/" 
+                               aria-label="LinkedIn" 
+                               class="social-link" 
+                               target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@helenabednarikballova4557" 
+                               aria-label="YouTube" 
+                               class="social-link" 
+                               target="_blank">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div class="footer-nav">
+                        <h4>PREHĽAD</h4>
+                        <ul>
+                            <li><a href="#about">O mne</a></li>
+                            <li><a href="#systemicky-pristup">Systemický prístup</a></li>
+                            <li><a href="#portdebras">PortDeBras</a></li>
+                            <li><a href="#akcie">Akcie</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="footer-contact">
+                        <h4>KONTAKT</h4>
+                        <div class="contact-info">
+                            <p>
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+421903206622">+421 903 206 622</a>
+                            </p>
+                            <p>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:ballova.helena@gmail.com">ballova.helena@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="expansion">
-            <!-- Add this new section -->
-            <h2 class="selected-point-header">
-                Selected Location
-                <div class="selected-point-subheader">Click a container on the map to see details</div>
-            </h2>
-            <div id="container-info"></div>
-            <h3 style="color: white; padding: 15px 15px 0 15px; margin: 0;">Nearest Locations</h3>
-            <ul id="nearest-containers"></ul>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; Hellena INSPIRATIONS 2023. Všetky práva vyhradené.</p>
+                <div class="footer-links">
+                    <a href="#">Ochrana osobných údajov</a>
+                    <span class="separator">|</span>
+                    <a href="#">Podmienky používania</a>
+                </div>
+            </div>
         </div>
-    </nav>
-    
-    <div id="map"></div>
-    <div id="map-controls">
-        <button id="getLocation" title="Get My Location">
-            <i class="fas fa-location-arrow"></i>
-        </button>
-        <button id="dropPin" title="Drop Pin">
-            <i class="fas fa-map-pin"></i>
-        </button>
-    </div>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    </footer>
     <script src="scripts.js"></script>
 </body>
 </html>

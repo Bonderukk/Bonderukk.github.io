@@ -1,0 +1,211 @@
+/* Import existing styles */
+@import 'style.css';
+
+/* PortDeBras specific styles */
+.portdebras-hero {
+    padding: 120px 0 60px;
+    background: var(--gradient-bg);
+}
+
+.portdebras-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.portdebras-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.portdebras-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.portdebras-text p {
+    margin-bottom: 20px;
+}
+
+.portdebras-image {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.portdebras-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .portdebras-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .portdebras-title {
+        font-size: 2.5rem;
+    }
+
+    .portdebras-text {
+        font-size: 1rem;
+    }
+}
+
+/* Add these new styles to your existing portDeBras.css */
+
+.portdebras-info {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.portdebras-info-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.portdebras-logo {
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+.portdebras-logo img {
+    width: 100%;
+    height: auto;
+}
+
+.portdebras-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.portdebras-description p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.portdebras-description a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.portdebras-description a:hover {
+    color: var(--purple);
+}
+
+@media (max-width: 968px) {
+    .portdebras-description {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .portdebras-logo {
+        max-width: 300px;
+    }
+}
+
+.current-events {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.current-events h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-image {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    aspect-ratio: 16/9;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.event-card:hover .event-image img {
+    filter: grayscale(0%);
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.event-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.event-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: 600;
+    margin-top: auto;
+    transition: color 0.3s ease;
+}
+
+.event-link:hover {
+    color: var(--purple);
+}
+
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .event-title {
+        font-size: 1.5rem;
+    }
+
+    .event-description {
+        font-size: 1rem;
+    }
+}
