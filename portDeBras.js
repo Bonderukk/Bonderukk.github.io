@@ -29,4 +29,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logo) {
         observer.observe(logo);
     }
+
+    // New hamburger menu code
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav ul');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Add active class to current page
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelector(`nav ul li a[href="${currentPage}"]`)?.classList.add('active');
 }); 

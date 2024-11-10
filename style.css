@@ -892,3 +892,65 @@ nav ul li a.active::after {
     visibility: hidden;
     opacity: 0;
     }
+
+/* Add these styles to your existing CSS */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        position: fixed;
+        top: 60px; /* Height of header */
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        gap: 0;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 15px 0;
+    }
+
+    /* Hamburger animation classes */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
