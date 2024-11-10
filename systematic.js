@@ -31,8 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.querySelector('nav ul');
 
     hamburger.addEventListener('click', () => {
+        console.log('Hamburger clicked!');
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        
     });
 
     // Close menu when clicking a link

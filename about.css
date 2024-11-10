@@ -1,4 +1,5 @@
 /* Base Styles */
+@import 'style.css';
 :root {
     --purple: #900cfc;
     --purple-dark: #7209d4;  /* Darker shade for gradient */
@@ -907,4 +908,83 @@ body {
     }
 }
 
+@media screen and (max-width: 768px) {
+    /* Override any conflicting nav styles */
+    nav {
+        padding: 5px 20px;
+        position: relative;
+    }
 
+    .hamburger {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1001;
+    }
+
+    nav ul {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 10px 0;
+        transition: left 0.3s ease;
+    }
+
+    nav ul.active {
+        left: 0;
+    }
+}
+
+/* Footer responsive styles */
+@media screen and (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-nav h4::after,
+    .footer-contact h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-nav ul {
+        text-align: center;
+    }
+
+    .contact-info p {
+        justify-content: center;
+    }
+
+    .contact-info i {
+        margin-right: 10px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+    }
+
+    .footer-bottom .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}

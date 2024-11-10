@@ -1,3 +1,5 @@
+@import 'style.css';
+
 :root {
     --purple: #900cfc;
     --purple-dark: #7209d4;
@@ -782,5 +784,33 @@ h1 {
 @media (max-width: 768px) {
     .intro-section {
         margin-bottom: 60px;
+    }
+}
+
+/* Mobile menu styles */
+@media screen and (max-width: 768px) {
+    nav ul {
+        display: none !important; /* Force override any other display values */
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav ul.active {
+        display: flex !important; /* Force override when active */
+    }
+
+    /* Ensure flex display is removed on mobile */
+    .flex {
+        display: none !important;
+    }
+
+    .flex.active {
+        display: flex !important;
     }
 }
