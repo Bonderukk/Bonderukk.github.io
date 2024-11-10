@@ -80,14 +80,30 @@
 
 .activity-link {
     display: inline-block;
-    color: var(--primary-color);
-    text-decoration: underline;
-    font-weight: 600;
-    transition: color 0.3s ease;
+    color: var(--purple);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: relative;
+    letter-spacing: 0.02em;
 }
 
-.activity-link:hover {
-    color: var(--purple);
+.activity-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--purple);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.activity-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 @media (max-width: 968px) {
@@ -104,4 +120,227 @@
         font-size: 1.3rem;
         min-height: auto;
     }
+}
+
+/* Add to your existing akcie.css */
+
+.systematic-grid {
+    padding: 80px 0;
+    background: var(--purple); /* Or any color you prefer for the background */
+}
+
+.systematic-grid .activity-card {
+    background: var(--white);
+}
+
+.systematic-grid .activity-title {
+    color: var(--purple);
+}
+
+.systematic-grid .activity-description {
+    color: var(--text-color);
+}
+
+.systematic-grid .activity-link {
+    color: var(--purple);
+}
+
+.systematic-grid .activity-link:hover {
+    color: var(--purple-dark);
+}
+
+/* Add these new styles to your existing akcie.css */
+
+.purple-section {
+    padding: 80px 0;
+    background: var(--purple);
+    color: var(--white);
+}
+
+.purple-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (min-width: 1200px) {
+    .purple-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.purple-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.purple-image {
+    aspect-ratio: 4/3;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.purple-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.purple-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.purple-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--white);
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.purple-link {
+    color: var(--white);
+    text-decoration: underline;
+    font-weight: 600;
+    margin-top: auto;
+    transition: opacity 0.3s ease;
+}
+
+.purple-link:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 968px) {
+    .purple-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* Add to your existing akcie.css */
+
+.portdebras-classes {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.class-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.class-image {
+    aspect-ratio: 16/9;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.class-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.class-card:hover .class-image img {
+    transform: scale(1.05);
+}
+
+.class-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.class-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.class-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.class-link {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: auto;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+.class-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--purple);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.class-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+@media (max-width: 968px) {
+    .classes-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .class-title {
+        font-size: 1.8rem;
+    }
+
+    .class-description {
+        font-size: 1rem;
+    }
+}
+
+/* Add this to your existing styles */
+.activity-description .highlight,
+.class-description .highlight {
+    color: var(--purple);
+    font-weight: 600;
+}
+
+/* Add to your existing styles */
+.portdebras-classes .class-link {
+    color: var(--purple);
+}
+
+.portdebras-classes .class-link:hover {
+    color: var(--purple-dark);
 }

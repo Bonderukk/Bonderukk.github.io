@@ -13,6 +13,16 @@
     color: var(--primary-color);
     margin-bottom: 30px;
     line-height: 1.2;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: 
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
+}
+
+.portdebras-title.reveal {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .portdebras-content {
@@ -33,6 +43,20 @@
 
 .portdebras-text p {
     margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: 
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
+}
+
+.portdebras-text p:nth-child(2) {
+    transition-delay: 0.2s; /* Delay for second paragraph */
+}
+
+.portdebras-text p.reveal {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .portdebras-image {
@@ -80,6 +104,51 @@
 .portdebras-logo {
     max-width: 400px;
     margin-bottom: 40px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.portdebras-logo.reveal {
+    animation: logoReveal 1s ease forwards,
+               floatEffect 3s ease-in-out infinite;
+}
+
+.portdebras-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        var(--purple) 50%,
+        transparent 100%
+    );
+    opacity: 0;
+    transform: translateX(0);
+    animation: slideUnderline 3s ease-in-out infinite;
+}
+
+@keyframes slideUnderline {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+    20% {
+        opacity: 0.7;
+        transform: translateX(0);
+    }
+    80% {
+        opacity: 0.7;
+        transform: translateX(70%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(70%);
+    }
 }
 
 .portdebras-logo img {
@@ -124,7 +193,7 @@
 
 .current-events {
     padding: 80px 0;
-    background: var(--white);
+    background: var(--gradient-bg);
 }
 
 .current-events h2 {
@@ -155,6 +224,9 @@
     overflow: hidden;
     margin-bottom: 24px;
     aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .event-image img {
@@ -184,15 +256,36 @@
 }
 
 .event-link {
+    display: inline-block;
     color: var(--primary-color);
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: 600;
     margin-top: auto;
+    padding: 8px 0;
+    position: relative;
     transition: color 0.3s ease;
+}
+
+.event-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--purple);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
 }
 
 .event-link:hover {
     color: var(--purple);
+}
+
+.event-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 @media (max-width: 768px) {
@@ -208,4 +301,71 @@
     .event-description {
         font-size: 1rem;
     }
+}
+
+/* Add or update these styles in your portDeBras.css */
+
+.event-card .event-image.logo-image {
+    background: var(--white);
+    padding: 40px;
+}
+
+.event-card .event-image.logo-image img {
+    object-fit: contain;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.event-card:hover .event-image.logo-image img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Update link styles */
+.event-description a,
+.portdebras-description a {
+    color: var(--purple);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.event-description a:hover,
+.portdebras-description a:hover {
+    opacity: 0.8;
+}
+
+@keyframes logoReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatEffect {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes glowEffect {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.portdebras-description p strong,
+.portdebras-description .highlight {
+    color: var(--purple);
+    font-weight: 600;
 }

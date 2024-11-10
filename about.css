@@ -186,6 +186,7 @@ body {
 
 .institutes-content {
     position: relative;
+    overflow: hidden;
 }
 
 .institutes-text {
@@ -197,6 +198,9 @@ body {
     padding: 30px;
     border-radius: 15px;
     backdrop-filter: blur(5px);
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: none;
 }
 
 .institutes-text::before {
@@ -234,11 +238,37 @@ body {
     filter: brightness(0) invert(1);
     transition: all 0.3s ease;
     padding: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Add different delays for each logo */
+.institute-logo:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.institute-logo:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.institute-logo:nth-child(3) {
+    animation-delay: 1s;
 }
 
 .institute-logo:hover {
     transform: translateY(-5px);
     filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 /* Responsive Adjustments */
@@ -463,16 +493,6 @@ body {
     z-index: -1;
 }
 
-.decorative-dots {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 80px;
-    height: 80px;
-    background-image: radial-gradient(var(--purple) 2px, transparent 2px);
-    background-size: 10px 10px;
-    opacity: 0.3;
-}
 
 /* Content side styling */
 .courses-content {
@@ -514,34 +534,110 @@ body {
     text-decoration: none;
     font-weight: 600;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 2px solid var(--purple);
     overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--purple) 0%, var(--purple-light) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.cta-button:hover::after {
+    opacity: 1;
 }
 
 .cta-button span {
     position: relative;
     z-index: 2;
+    transition: all 0.3s ease;
 }
 
 .button-decoration {
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%) rotate(45deg);
-    transition: transform 0.6s ease;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transform: translate(-50%, -50%);
+    transition: 0.8s all;
+    z-index: 1;
 }
 
 .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(144, 12, 252, 0.2);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(144, 12, 252, 0.3);
+}
+
+.cta-button:hover span {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 .cta-button:hover .button-decoration {
-    transform: translate(-50%, -50%) rotate(90deg);
+    left: 100%;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(144, 12, 252, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(144, 12, 252, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(144, 12, 252, 0);
+    }
+}
+
+/* Add shimmer effect */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -75%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* Optional: Add click effect */
+.cta-button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(144, 12, 252, 0.2);
 }
 
 /* Responsive Design */
@@ -701,3 +797,115 @@ body {
 .contact-info a:hover {
     color: var(--white);
 }
+
+/* Animation for text */
+.animate-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optional: Add animation when scrolling into view */
+.animate-text.visible {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Header Animation Styles */
+.animate-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.word {
+    display: inline-flex;
+    overflow: hidden;
+}
+
+.letter {
+    display: inline-block;
+    transform: translateY(-100%);
+    opacity: 0;
+    animation: dropIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    color: var(--text-color);
+}
+
+.letter.purple {
+    color: var(--purple);
+}
+
+/* Generate delays for each letter */
+.word:nth-child(1) .letter:nth-child(1) { animation-delay: 0.05s; }
+.word:nth-child(1) .letter:nth-child(2) { animation-delay: 0.1s; }
+.word:nth-child(1) .letter:nth-child(3) { animation-delay: 0.15s; }
+
+/* Helena */
+.word:nth-child(2) .letter:nth-child(1) { animation-delay: 0.2s; }
+.word:nth-child(2) .letter:nth-child(2) { animation-delay: 0.25s; }
+.word:nth-child(2) .letter:nth-child(3) { animation-delay: 0.3s; }
+.word:nth-child(2) .letter:nth-child(4) { animation-delay: 0.35s; }
+.word:nth-child(2) .letter:nth-child(5) { animation-delay: 0.4s; }
+.word:nth-child(2) .letter:nth-child(6) { animation-delay: 0.45s; }
+
+/* Bednarík */
+.word:nth-child(3) .letter:nth-child(1) { animation-delay: 0.5s; }
+.word:nth-child(3) .letter:nth-child(2) { animation-delay: 0.55s; }
+.word:nth-child(3) .letter:nth-child(3) { animation-delay: 0.6s; }
+.word:nth-child(3) .letter:nth-child(4) { animation-delay: 0.65s; }
+.word:nth-child(3) .letter:nth-child(5) { animation-delay: 0.7s; }
+.word:nth-child(3) .letter:nth-child(6) { animation-delay: 0.75s; }
+.word:nth-child(3) .letter:nth-child(7) { animation-delay: 0.8s; }
+.word:nth-child(3) .letter:nth-child(8) { animation-delay: 0.85s; }
+
+/* Ballová */
+.word:nth-child(4) .letter:nth-child(1) { animation-delay: 0.9s; }
+.word:nth-child(4) .letter:nth-child(2) { animation-delay: 0.95s; }
+.word:nth-child(4) .letter:nth-child(3) { animation-delay: 1.0s; }
+.word:nth-child(4) .letter:nth-child(4) { animation-delay: 1.05s; }
+.word:nth-child(4) .letter:nth-child(5) { animation-delay: 1.1s; }
+.word:nth-child(4) .letter:nth-child(6) { animation-delay: 1.15s; }
+.word:nth-child(4) .letter:nth-child(7) { animation-delay: 1.2s; }
+
+@keyframes dropIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(20%);
+        opacity: 1;
+    }
+    70% {
+        transform: translateY(-10%);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+

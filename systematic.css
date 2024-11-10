@@ -5,6 +5,13 @@
     --white: #FFFFFF;
 }
 
+body {
+    background: var(--gradient-bg);
+    min-height: 100vh;  /* Ensure body takes up full viewport height */
+    margin: 0;
+    padding: 0;
+}
+
 /* Hero Section */
 .systematic-hero {
     background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
@@ -42,9 +49,62 @@
 
 .content-grid {
     display: grid;
+    background: var(--gradient-bg);
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 80px;
     align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.content-grid h1 {
+    font-size: 2em;
+}
+
+/* Paragraph animations */
+.content-grid > p,
+.content-text > p.intro {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: 
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out,
+        border 0.2s ease-out,
+        box-shadow 0.2s ease-out;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid transparent;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.content-grid > p:hover,
+.content-text > p.intro:hover {
+    border: 3px solid var(--purple);
+    box-shadow: 0 5px 20px rgba(144, 12, 252, 0.1);
+    transition: 
+        border 0.2s ease-out
+        box-shadow 0.2s ease-out !important;
+}
+
+.content-grid p:first-of-type.reveal {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.content-grid p:last-of-type {
+    transform: translateX(50px);
+}
+
+.content-grid p:last-of-type.reveal {
+    opacity: 1;
+    transform: translateX(0);
+
+}
+
+/* Add subtle highlight for key terms */
+.content-grid p strong{
+    color: var(--purple);
 }
 
 /* Image Styles */
@@ -55,8 +115,9 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    will-change: opacity, transform;
+    transition: all 0.8s ease-out;
+    aspect-ratio: 4/3;
+    background: #f5f5f5;
 }
 
 .content-image.reveal {
@@ -82,7 +143,8 @@
 
 .content-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
@@ -90,11 +152,16 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    max-width: 150px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px;
+    max-width: 120px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.institute-logo:hover {
+    transform: translateY(-3px);
 }
 
 .institute-logo img {
@@ -115,7 +182,7 @@
 
 .content-text .intro {
     font-size: 1.3rem;
-    color: var(--purple);
+    color: var(--text-color);
     font-weight: 500;
     line-height: 1.6;
 }
@@ -172,16 +239,32 @@
 }
 
 .content-text p {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: none;
     opacity: 0;
 }
 
-.content-text p:nth-child(2) {
-    animation-delay: 0.2s;
+.content-text p:nth-child(odd) {
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
 }
 
-.content-text p:nth-child(3) {
-    animation-delay: 0.4s;
+.content-text p:nth-child(even) {
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+}
+
+.content-text p.reveal {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Delay for subsequent paragraphs */
+.content-text p:nth-child(2).reveal {
+    transition-delay: 0.2s;
+}
+
+.content-text p:nth-child(3).reveal {
+    transition-delay: 0.4s;
 }
 
 /* Navbar Styles */
@@ -606,7 +689,6 @@ nav ul li a.active::after {
 
 .link-highlight:hover {
     color: var(--purple-dark);
-    border-bottom-color: var(--purple-dark);
 }
 
 /* Responsive adjustments for third section */
@@ -670,4 +752,35 @@ nav ul li a.active::after {
 
 .content-image.book-image {
     animation-delay: 0.3s;
+}
+
+/* Enhanced Header Styles */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    background: var(--primary-color);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 40px;
+    position: relative;
+    line-height: 1.2;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+.intro-section {
+    margin-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+    .intro-section {
+        margin-bottom: 60px;
+    }
 }
