@@ -324,7 +324,7 @@ body {
 
 .offerings h2 {
     font-family: 'Roboto', sans-serif;
-    font-size: 3rem;
+    font-size: 3.2rem;
     text-align: center;
     color: var(--white);
     margin-bottom: 60px;
@@ -502,7 +502,7 @@ body {
 
 .courses-content h2 {
     font-family: 'Roboto', sans-serif;
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     color: var(--text-color);
     margin-bottom: 30px;
     position: relative;

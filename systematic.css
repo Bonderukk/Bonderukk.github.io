@@ -613,7 +613,7 @@ nav ul li a.active::after {
 }
 
 .quote {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.4rem;
     line-height: 1.6;
     color: var(--purple);
@@ -830,7 +830,7 @@ h1 {
     margin-bottom: 60px;
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
-    font-size: 3rem;
+    font-size: 3.2rem;
 }
 
 /* Offerings Section Styles */
@@ -844,7 +844,7 @@ h1 {
 .offerings h2 {
     text-align: center;
     color: var(--white);
-    font-size: 3rem;
+    font-size: 3.2rem;
     margin-bottom: 60px;
     font-family: 'Roboto', sans-serif;
 }
@@ -1058,11 +1058,18 @@ h1 {
 }
 
 .cta-content h2 {
+    font-family: 'Roboto', sans-serif;
     color: #333;
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     margin-bottom: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); /* Add white text shadow */
+}
+
+@media (max-width: 768px) {
+    .cta-content h2 {
+        font-size: 2.5rem; /* Adjust size for mobile */
+    }
 }
 
 .cta-content p {
@@ -1225,3 +1232,5 @@ h1 {
 .offering-image.with-bg img {
     object-fit: contain;
 }
+
+
