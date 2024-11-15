@@ -1088,3 +1088,20 @@ body {
     text-decoration: none; /* Changed from underline to none */
     opacity: 0.9; /* Optional: add subtle opacity change for hover feedback */
 }
+
+/* White background button with purple hover */
+.purple-link {
+    color: var(--white) !important;
+    text-decoration: none;
+}
+
+.purple-link:hover {
+    text-decoration: none; /* Changed from underline to none */
+    opacity: 0.9; /* Optional: add subtle opacity change for hover feedback */
+}
+
+
+/* Primary button specific ::after effect */
+.cta-button.primary::after {
+    background: linear-gradient(45deg, var(--purple) 0%, var(--purple) 100%);
+}
