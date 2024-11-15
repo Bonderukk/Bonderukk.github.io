@@ -8,8 +8,9 @@
 }
 
 .akcie-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 3.2rem;
     color: var(--primary-color);
     text-align: center;
     margin-bottom: 60px;
@@ -79,31 +80,54 @@
 }
 
 .activity-link {
-    display: inline-block;
-    color: var(--purple);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background: var(--purple);
+    color: var(--white) !important;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
     position: relative;
-    letter-spacing: 0.02em;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(144, 12, 252, 0.2);
+    margin-top: auto;
+    text-align: center;
+    width: 100%;
 }
 
-.activity-link::after {
+.activity-link::before {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: var(--purple);
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: shimmer 3s infinite;
 }
 
-.activity-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+@keyframes shimmer {
+    0% {
+        left: -75%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+.activity-link:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(144, 12, 252, 0.3);
 }
 
 @media (max-width: 968px) {
@@ -142,11 +166,15 @@
 }
 
 .systematic-grid .activity-link {
-    color: var(--purple);
+    background: var(--purple);
+    color: var(--white) !important;
 }
 
 .systematic-grid .activity-link:hover {
-    color: var(--purple-dark);
+    background: var(--purple-dark);
+    color: var(--white) !important;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(144, 12, 252, 0.3);
 }
 
 /* Add these new styles to your existing akcie.css */
@@ -337,10 +365,36 @@
 }
 
 /* Add to your existing styles */
-.portdebras-classes .class-link {
-    color: var(--purple);
+.portdebras-classes .activity-link {
+    margin-top: 20px;
+    width: 100%;
 }
 
-.portdebras-classes .class-link:hover {
-    color: var(--purple-dark);
+.portdebras-classes .class-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.portdebras-classes .class-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.portdebras-classes .event-description {
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+/* Remove the old class-link styles since we're using activity-link instead */
+.portdebras-classes .class-link {
+    display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .activity-link {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
 }

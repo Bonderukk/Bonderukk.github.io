@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
 }
@@ -82,7 +82,8 @@ body {
 }
 
 .about-intro h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
     font-size: 3.5rem;
     margin-bottom: 30px;
     line-height: 1.2;
@@ -322,7 +323,7 @@ body {
 }
 
 .offerings h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 3rem;
     text-align: center;
     color: var(--white);
@@ -369,7 +370,7 @@ body {
 }
 
 .offering-content h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: var(--white);
@@ -500,7 +501,7 @@ body {
 }
 
 .courses-content h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 3.5rem;
     color: var(--text-color);
     margin-bottom: 30px;
@@ -547,7 +548,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, var(--purple) 0%, var(--purple-light) 100%);
+    background: linear-gradient(45deg, var(--white) 0%, var(--white) 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 1;
@@ -987,4 +988,103 @@ body {
     .footer-links {
         justify-content: center;
     }
+}
+
+/* Add these styles for the new CTA buttons */
+.offering-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background: var(--white);
+    color: var(--purple);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.offering-cta:hover {
+    background: var(--white);
+    color: var(--purple);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.offering-cta span {
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.offering-cta:hover span {
+    transform: scale(1.05);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.offering-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(144, 12, 252, 0.3),
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: shimmer 3s infinite;
+}
+
+.offering-cta:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(144, 12, 252, 0.2);
+}
+
+/* Update the offering card styles to accommodate the new button */
+.offering-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .offering-cta {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+}
+
+/* Special class for images that need white background */
+.offering-image.with-bg {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offering-image.with-bg img {
+    object-fit: contain;
+}
+
+.white-link {
+    color: var(--white) !important;
+    text-decoration: none;
+}
+
+.white-link:hover {
+    text-decoration: none; /* Changed from underline to none */
+    opacity: 0.9; /* Optional: add subtle opacity change for hover feedback */
 }

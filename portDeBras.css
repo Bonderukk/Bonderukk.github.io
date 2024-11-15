@@ -8,7 +8,8 @@
 }
 
 .portdebras-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     font-size: 3.5rem;
     color: var(--primary-color);
     margin-bottom: 30px;
@@ -18,6 +19,7 @@
     transition: 
         opacity 0.8s ease-out,
         transform 0.8s ease-out;
+    letter-spacing: -0.5px;
 }
 
 .portdebras-title.reveal {
@@ -164,6 +166,7 @@
 }
 
 .portdebras-description p {
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-color);
@@ -192,114 +195,141 @@
 }
 
 .current-events {
-    padding: 80px 0;
+    padding: 100px 0;
     background: var(--gradient-bg);
 }
 
 .current-events h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
     color: var(--primary-color);
     text-align: center;
     margin-bottom: 60px;
+    position: relative;
 }
 
-.events-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+.events-grid.single-event {
+    grid-template-columns: 1fr;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-.event-card {
-    display: flex;
-    flex-direction: column;
-}
-
-.event-image {
-    position: relative;
-    border-radius: 10px;
+.single-event .event-card {
+    background: var(--white);
+    border-radius: 15px;
     overflow: hidden;
-    margin-bottom: 24px;
-    aspect-ratio: 16/9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.event-image img {
+.single-event .event-image {
+    aspect-ratio: 21/9;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.single-event .event-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+    transition: transform 0.6s ease;
 }
 
-.event-card:hover .event-image img {
-    filter: grayscale(0%);
+.single-event .event-card:hover .event-image img {
+    transform: scale(1.05);
+}
+
+.event-content {
+    padding: 40px;
 }
 
 .event-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.2rem;
     color: var(--primary-color);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .event-description {
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-color);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.event-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .event-link {
     display: inline-block;
-    color: var(--primary-color);
-    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 30px;
     font-weight: 600;
-    margin-top: auto;
-    padding: 8px 0;
-    position: relative;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.event-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--purple);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease;
+.event-link.primary {
+    background: var(--purple);
+    color: var(--white);
 }
 
-.event-link:hover {
+.event-link.secondary {
+    background: transparent;
     color: var(--purple);
+    border: 2px solid var(--purple);
 }
 
-.event-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+.event-link.primary:hover {
+    background: var(--purple-dark);
+    transform: translateY(-2px);
+}
+
+.event-link.secondary:hover {
+    background: var(--purple);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.highlight {
+    color: var(--purple);
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
-    .events-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    .current-events {
+        padding: 60px 0;
+    }
+
+    .current-events h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .event-content {
+        padding: 30px;
     }
 
     .event-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .event-description {
         font-size: 1rem;
+    }
+
+    .event-links {
+        flex-direction: column;
+    }
+
+    .event-link {
+        width: 100%;
+        text-align: center;
     }
 }
 
@@ -307,17 +337,18 @@
 
 .event-card .event-image.logo-image {
     background: var(--white);
-    padding: 40px;
+    padding: 20px;
 }
 
 .event-card .event-image.logo-image img {
     object-fit: contain;
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(1.2);
 }
 
 .event-card:hover .event-image.logo-image img {
-    transform: scale(1.05);
+    transform: scale(1.3);
     transition: transform 0.3s ease;
 }
 
@@ -368,4 +399,176 @@
 .portdebras-description .highlight {
     color: var(--purple);
     font-weight: 600;
+}
+
+/* Add this to your existing styles */
+.events-grid.single-event {
+    grid-template-columns: 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.single-event .event-card {
+    width: 100%;
+}
+
+.single-event .event-image {
+    aspect-ratio: 21/9;
+}
+
+.event-links.centered {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.event-link.fancy {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: var(--purple);
+    color: var(--white);
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(123, 104, 238, 0.3);
+}
+
+.event-link.fancy:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(123, 104, 238, 0.4);
+    background: linear-gradient(45deg, var(--purple), var(--purple-dark));
+}
+
+.button-text {
+    position: relative;
+    z-index: 1;
+}
+
+.button-icon {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.event-link.fancy:hover .button-icon {
+    transform: translateX(5px);
+}
+
+.event-link.fancy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--purple-dark), var(--purple));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.event-link.fancy:hover::before {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .event-link.fancy {
+        padding: 14px 28px;
+        font-size: 1rem;
+    }
+}
+
+/* Update these styles */
+.events-grid.single-event {
+    grid-template-columns: 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.event-content.text-center {
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.event-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.event-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.event-links.centered {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.event-link.fancy {
+    padding: 18px 36px;
+    font-size: 1.2rem;
+}
+
+/* Update responsive styles */
+@media (max-width: 768px) {
+    .event-content.text-center {
+        padding: 40px 20px;
+    }
+
+    .event-title {
+        font-size: 2rem;
+    }
+
+    .event-description {
+        font-size: 1.1rem;
+    }
+
+    .event-link.fancy {
+        padding: 16px 32px;
+        font-size: 1.1rem;
+    }
+}
+
+.event-link.fancy::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -75%;
+    }
+    100% {
+        left: 150%;
+    }
 }
