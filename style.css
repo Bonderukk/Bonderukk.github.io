@@ -1165,3 +1165,9 @@ nav ul li a.active::after {
         font-size: 13px;
     }
 }
+
+@media (max-width: 768px) {
+    .mobile-break {
+        display: block;
+    }
+}
