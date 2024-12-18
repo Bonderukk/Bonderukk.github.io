@@ -1,452 +1,143 @@
-let map;
-let userMarker;
-let searchCircle;
-let isDropPinMode = false;
-let nearestContainers = [];
-let selectedMarker = null;
-
-// Make sure this function is called when the page loads
-document.addEventListener('DOMContentLoaded', function() {
-    initMap();
-    // ... rest of your existing DOMContentLoaded code ...
-});
-
-function initMap() {
-    // Start with Bratislava as the default center
-    const bratislavaCoords = [48.1486, 17.1077];
-    map = L.map('map', {
-        zoomControl: false  // Disable default zoom controls
-    }).setView(bratislavaCoords, window.innerWidth < 768 ? 11 : 12);
-
-    // Add the tile layer (map imagery)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Add zoom control to the bottom right corner
-    L.control.zoom({
-        position: 'bottomright'
-    }).addTo(map);
-
-    map.on('click', onMapClick);
-
-    getUserLocation();
-
-    displayContainerInfo(); // This will clear and hide the container info panel
+// Add this at the beginning of your existing code
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
 }
 
-function getUserLocation() {
-    if ("geolocation" in navigator) {
-        // Clear any existing watch
-        if (window.geolocationWatchId) {
-            navigator.geolocation.clearWatch(window.geolocationWatchId);
-        }
-
-        // Force clear cache by requesting high accuracy position
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        };
-
-        navigator.geolocation.getCurrentPosition(
-            // Success callback
-            function(position) {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-                
-                console.log("Fresh geolocation:", lat, lng);
-                updateMapView(lat, lng);
-            },
-            // Error callback
-            function(error) {
-                console.error("Geolocation error:", error);
-                handleLocationError(error);
-            },
-            options
-        );
-    } else {
-        console.log("Geolocation not supported");
-        handleLocationError(new Error("Geolocation not supported"));
-    }
-}
-
-function handleLocationError(error) {
-    // First try IP-based geolocation
-    fetch('https://ipapi.co/json/')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('IP geolocation failed');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.latitude && data.longitude) {
-                console.log("IP-based location:", data.latitude, data.longitude);
-                updateMapView(data.latitude, data.longitude);
-            } else {
-                throw new Error('Invalid IP geolocation data');
-            }
-        })
-        .catch(error => {
-            console.error("IP Geolocation failed:", error);
-            // Only use default location as last resort
-            console.log("Using default location");
-            updateMapView(48.1486, 17.1077);
-        });
-}
-
-function updateMapView(lat, lng) {
-    if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
-        console.error("Invalid coordinates:", lat, lng);
-        return;
-    }
-
-    console.log("Updating map view to:", lat, lng);
-    
-    // Remove existing user marker if it exists
-    if (userMarker) {
-        map.removeLayer(userMarker);
-    }
-    
-    // Create new user marker
-    userMarker = L.marker([lat, lng], {
-        title: "Your Location",
-        zIndexOffset: 1000 // Ensure user marker is above other markers
-    }).addTo(map);
-    
-    // Update map view
-    map.setView([lat, lng], 12);
-    
-    // Update search circle
-    updateSearchCircle(lat, lng);
-    
-    // Fetch nearby containers
-    fetchDonationContainers(lat, lng);
-}
-
-function updateSearchCircle(lat, lng) {
-    if (searchCircle) {
-        map.removeLayer(searchCircle);
-    }
-    
-    searchCircle = L.circle([lat, lng], {
-        color: 'blue',
-        fillColor: '#30f',
-        fillOpacity: 0.1,
-        radius: 20000 // 20 km in meters
-    }).addTo(map);
-}
-
-function fetchDonationContainers(lat, lng) {
-    const overpassUrl = "https://overpass-api.de/api/interpreter";
-    const radius = 20000; // 20 km in meters
-    const query = `
-    [out:json][timeout:25];
-    (
-      node["amenity"="recycling"]["recycling:clothes"="yes"](around:${radius},${lat},${lng});
-      node["amenity"="recycling"]["recycling:shoes"="yes"](around:${radius},${lat},${lng});
-      way["amenity"="recycling"]["recycling:clothes"="yes"](around:${radius},${lat},${lng});
-      way["amenity"="recycling"]["recycling:shoes"="yes"](around:${radius},${lat},${lng});
-    );
-    out center;
-    `;
-
-    fetch(overpassUrl, {
-        method: 'POST',
-        body: query
-    })
-    .then(response => response.json())
-    .then(data => {
-        addDonationContainersToMap(data.elements);
-        updateNearestContainers(lat, lng, data.elements);
-    })
-    .catch(error => {
-        console.error("Error fetching donation containers:", error);
-    });
-}
-
-function addDonationContainersToMap(containers) {
-    // Clear existing markers
-    map.eachLayer((layer) => {
-        if (layer instanceof L.Marker && layer !== userMarker) {
-            map.removeLayer(layer);
-        }
-    });
-
-    const iconSize = window.innerWidth < 480 ? [20, 33] : [25, 41];
-    const containerIcon = L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: iconSize,
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
-    const centerIcon = L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-        iconSize: iconSize,
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
-    });
-
-    containers.forEach(container => {
-        const isClothes = container.tags["recycling:clothes"] === "yes";
-        const isShoes = container.tags["recycling:shoes"] === "yes";
-        const isCenter = container.tags["recycling_type"] === "centre";
-        const icon = isCenter ? centerIcon : containerIcon;
-
-        const markerLatLng = container.center ? [container.center.lat, container.center.lon] : [container.lat, container.lon];
-        const marker = L.marker(markerLatLng, {icon: icon})
-            .addTo(map)
-            .on('click', function(e) {
-                e.originalEvent.stopPropagation();
-                L.DomEvent.stopPropagation(e);
-
-                // Remove highlight from previously selected marker
-                if (selectedMarker) {
-                    selectedMarker.setIcon(selectedMarker.defaultIcon);
+    // Modify the story box animation code
+    const storyBoxObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                if (window.innerWidth <= 844) {  // For smaller screens, including iPhone 12 Pro
+                    entry.target.classList.add('fadeInUp');
+                } else {
+                    if (entry.target.classList.contains('left-box')) {
+                        entry.target.classList.add('left-box-animation');
+                    } else if (entry.target.classList.contains('middle-box')) {
+                        entry.target.classList.add('middle-box-animation');
+                    } else if (entry.target.classList.contains('right-box')) {
+                        entry.target.classList.add('right-box-animation');
+                    }
                 }
+            } else {
+                entry.target.style.opacity = '0';
+                entry.target.classList.remove('left-box-animation', 'middle-box-animation', 'right-box-animation', 'fadeInUp');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
 
-                // Highlight the clicked marker
-                marker.defaultIcon = icon;
-                const highlightedIcon = L.icon({
-                    ...icon.options,
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png'
-                });
-                marker.setIcon(highlightedIcon);
+    // Observe each story box
+    document.querySelectorAll('.story-box').forEach(box => {
+        storyBoxObserver.observe(box);
+    });
 
-                // Set this as the new selected marker
-                selectedMarker = marker;
+    // Existing square animation code
+    const squareObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const square = entry.target.querySelector('.square');
+            if (entry.isIntersecting) {
+                square.classList.add('square-animation');
+            } else {
+                square.classList.remove('square-animation');
+            }
+        });
+    });
+  
+    const squareWrapper = document.querySelector('.square-wrapper');
+    if (squareWrapper) {
+        squareObserver.observe(squareWrapper);
+    }
 
-                displayContainerInfo(container);
-                const navbar = document.getElementById('vertical-navbar');
-                navbar.classList.add('expanded');
+    // Add this to your existing JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
             });
-    });
-}
+        }, {
+            threshold: 0.1,
+            rootMargin: '-50px 0px -50px 0px'  // Trigger earlier
+        });
 
-function toggleDropPinMode() {
-    isDropPinMode = !isDropPinMode;
-    const dropPinButton = document.getElementById('dropPin');
-    dropPinButton.textContent = isDropPinMode ? 'Cancel Drop Pin' : 'Drop Pin';
-    map.dragging.enable();
-    map.touchZoom.enable();
-    map.doubleClickZoom.enable();
-    map.scrollWheelZoom.enable();
-    map.boxZoom.enable();
-    map.keyboard.enable();
-    if (isDropPinMode) {
-        map.getContainer().style.cursor = 'crosshair';
-    } else {
-        map.getContainer().style.cursor = '';
-    }
-}
+        // Observe each header with the 'slide-in-right' class
+        document.querySelectorAll('.slide-in-right').forEach(header => {
+            headerObserver.observe(header);
+        });
 
-function onMapClick(e) {
-    if (isDropPinMode) {
-        updateMapView(e.latlng.lat, e.latlng.lng);
-        toggleDropPinMode();
-    }
-    // Remove the auto-collapse behavior when clicking on map
-}
+        const phonePrefix = document.querySelector('input[name="phone-prefix"]');
+        const phoneNumber = document.querySelector('input[name="phone-number"]');
 
-document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.getElementById('vertical-navbar');
-    const newNavbarToggle = document.getElementById('new-navbar-toggle');
-    
-    // Remove old event listeners if they exist
-    // const navbarToggle = document.getElementById('navbar-toggle');
-    // if (navbarToggle) {
-    //     navbarToggle.removeEventListener('click', toggleNavbar);
-    // }
+        phonePrefix.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^\d+]/g, '');
+            if (this.value.length > 0 && this.value[0] !== '+') {
+                this.value = '+' + this.value;
+            }
+            if (this.value.length > 4) {
+                this.value = this.value.slice(0, 4);
+            }
+        });
 
-    // New toggle button click handler
-    newNavbarToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        navbar.classList.toggle('expanded');
-        updateToggleIcon();
-    });
+        phoneNumber.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^\d]/g, '')
+                             .replace(/(\d{3})(?=\d)/g, '$1 ')
+                             .trim();
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+        });
 
-    // Function to update the toggle icon
-    function updateToggleIcon() {
-        const icon = newNavbarToggle.querySelector('i');
-        if (navbar.classList.contains('expanded')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    }
+        // Modify the form submission event listener
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            const name = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const phonePrefix = document.querySelector('input[name="phone-prefix"]').value;
+            const phoneNumber = document.querySelector('input[name="phone-number"]').value;
+            const subject = document.querySelector('input[name="subject"]').value;
+            const message = document.querySelector('textarea[name="message"]').value;
 
-    // Close navbar when clicking outside
-    document.addEventListener('click', function(e) {
-        // Check if the click was on a marker or within the navbar
-        const isMarkerClick = e.target.classList.contains('leaflet-marker-icon');
-        if (!navbar.contains(e.target) && !isMarkerClick && navbar.classList.contains('expanded')) {
-            navbar.classList.remove('expanded');
-            updateToggleIcon();
-        }
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePrefixPattern = /^\+\d{3}$/;
+            const phoneNumberPattern = /^\d{3} \d{3} \d{3}$/;
+
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                event.preventDefault();
+            }
+
+            if ((phonePrefix || phoneNumber) && (!phonePrefixPattern.test(phonePrefix) || !phoneNumberPattern.test(phoneNumber))) {
+                alert('Please enter a valid phone number.');
+                event.preventDefault();
+            }
+
+            if (name.length > 50 || subject.length > 30 || message.length > 300) {
+                alert('Please ensure all fields are within the specified length.');
+                event.preventDefault();
+            }
+        });
     });
 
-    // ... rest of your existing code ...
-});
-
-// Add this new function to handle getting directions
-function getDirections(lat, lon) {
-    // Get the user's current location (if available)
-    if (userMarker) {
-        const userLat = userMarker.getLatLng().lat;
-        const userLon = userMarker.getLatLng().lng;
-        window.open(`https://www.google.com/maps/dir/${userLat},${userLon}/${lat},${lon}`, '_blank');
-    } else {
-        // If user location is not available, just show directions to the container
-        window.open(`https://www.google.com/maps/dir//${lat},${lon}`, '_blank');
-    }
-}
-
-window.getDirections = function(lat, lon) {
-    // Get the user's current location (if available)
-    if (userMarker) {
-        const userLat = userMarker.getLatLng().lat;
-        const userLon = userMarker.getLatLng().lng;
-        window.open(`https://www.google.com/maps/dir/${userLat},${userLon}/${lat},${lon}`, '_blank');
-    } else {
-        // If user location is not available, just show directions to the container
-        window.open(`https://www.google.com/maps/dir//${lat},${lon}`, '_blank');
-    }
-};
-
-function updateNearestContainers(userLat, userLon, containers) {
-    nearestContainers = containers.map(container => {
-        const distance = calculateDistance(userLat, userLon, container.lat, container.lon);
-        return { ...container, distance };
-    })
-    .sort((a, b) => a.distance - b.distance)
-    .slice(0, 3);
-
-    displayNearestContainers();
-}
-
-function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the Earth in km
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLon = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-              Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c;
-}
-
-function displayNearestContainers() {
-    const containerList = document.getElementById('nearest-containers');
-    if (!containerList) return;
-    
-    containerList.innerHTML = '';
-
-    nearestContainers.forEach(container => {
-        const li = document.createElement('li');
-        const isClothes = container.tags["recycling:clothes"] === "yes";
-        const isShoes = container.tags["recycling:shoes"] === "yes";
-        const isCenter = container.tags["recycling_type"] === "centre";
-        let containerType = "";
-
-        if (isCenter) {
-            containerType = "Recycling Center";
-        } else if (isClothes && isShoes) {
-            containerType = "Clothes and Shoes";
-        } else if (isClothes) {
-            containerType = "Clothes";
-        } else if (isShoes) {
-            containerType = "Shoes";
-        }
-
-        li.innerHTML = `
-            <div class="container-type">${containerType} ${isCenter ? '' : 'Container'}</div>
-            <div class="container-distance">${container.distance.toFixed(2)} km away</div>
-            <button class="directions-btn" onclick="getDirections(${container.lat}, ${container.lon})">Get Directions</button>
-        `;
-        containerList.appendChild(li);
+    document.querySelector('input[name="name"]').addEventListener('input', function(e) {
+        this.value = this.value.replace(/[0-9]/g, '');
     });
-}
 
-function showOpeningHours(hours) {
-    if (hours && hours !== "Not available") {
-        alert(`Opening Hours: ${hours}`);
-    } else {
-        alert("Opening hours information is not available for this location.");
-    }
-}
-
-// Make sure this function is accessible globally
-window.showOpeningHours = showOpeningHours;
-
-function displayContainerInfo(container) {
-    const header = document.querySelector('.selected-point-header');
-    const infoPanel = document.getElementById('container-info');
-
-    if (!container) {
-        // No container selected, clear the info and hide the panel
-        header.innerHTML = `
-            Selected Location
-            <div class="selected-point-subheader">Click a container on the map to see details</div>
-        `;
-        infoPanel.innerHTML = '';
-
-        // Remove highlight from previously selected marker
-        if (selectedMarker) {
-            selectedMarker.setIcon(selectedMarker.defaultIcon);
-            selectedMarker = null;
+    document.querySelector('input[name="phone"]').addEventListener('input', function(e) {
+        // Remove any character that is not a digit, plus sign, or space
+        this.value = this.value.replace(/[^0-9+\s]/g, '');
+        
+        // Replace multiple consecutive spaces with a single space
+        this.value = this.value.replace(/\s+/g, ' ');
+        
+        // Trim leading and trailing spaces
+        this.value = this.value.trim();
+        
+        // Limit the total length to 20 characters
+        if (this.value.length > 20) {
+            this.value = this.value.slice(0, 20);
         }
-
-        return;
-    }
-
-    // Rest of the existing function for when a container is selected
-    const isClothes = container.tags["recycling:clothes"] === "yes";
-    const isShoes = container.tags["recycling:shoes"] === "yes";
-    const isCenter = container.tags["recycling_type"] === "centre";
-    
-    let containerType = "";
-    if (isCenter) {
-        containerType = "Recycling Center";
-    } else if (isClothes && isShoes) {
-        containerType = "Clothes and Shoes Donation";
-    } else if (isClothes) {
-        containerType = "Clothes Donation";
-    } else if (isShoes) {
-        containerType = "Shoes Donation";
-    }
-
-    header.innerHTML = `
-        ${containerType}
-        <div class="selected-point-subheader">Container Details</div>
-    `;
-
-    const openingHours = container.tags["opening_hours"] || "Not available";
-
-    let infoHTML = `
-        <button class="directions-btn" onclick="getDirections(${container.lat}, ${container.lon})">Get Directions</button>
-    `;
-
-    if (isCenter) {
-        infoHTML += `
-            <button class="info-btn" onclick="showOpeningHours('${openingHours}')">Show Opening Hours</button>
-        `;
-    }
-
-    infoPanel.innerHTML = infoHTML;
-}
-
-// You might also want to call this when closing the expanded navbar
-function closeNavbar() {
-    const navbar = document.getElementById('vertical-navbar');
-    navbar.classList.remove('expanded');
-    displayContainerInfo(); // This will now also remove the highlight
-}
-
+    });

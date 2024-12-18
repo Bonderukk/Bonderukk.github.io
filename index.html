@@ -1,49 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ReDress - Donation Container Locator</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stano Sladek - Certifikovaný Integratívny Kouč</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Add these meta tags -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button id="new-navbar-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    <nav id="vertical-navbar" class="expanded">
-        <div class="app-name">
-            <span class="initials">R</span><span class="expansion e">e</span>
-            <span class="initials">D</span><span class="expansion ress">ress</span>
-        </div>
+    <div id="notification" class="notification"></div>
+    <!-- Link to the external JavaScript file -->
+    <script src="notification.js"></script>
 
-        <div class="expansion">
-            <!-- Add this new section -->
-            <h2 class="selected-point-header">
-                Selected Location
-                <div class="selected-point-subheader">Click a container on the map to see details</div>
-            </h2>
-            <div id="container-info"></div>
-            <h3 style="color: white; padding: 15px 15px 0 15px; margin: 0;">Nearest Locations</h3>
-            <ul id="nearest-containers"></ul>
-        </div>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Služby</a></li>
+            <li><a href="about.html">O mne</a></li>
+            <li><a href="contact.html" >Kontakt</a></li>
+        </ul>
     </nav>
-    
-    <div id="map"></div>
-    <div id="map-controls">
-        <button id="getLocation" title="Get My Location">
-            <i class="fas fa-location-arrow"></i>
-        </button>
-        <button id="dropPin" title="Drop Pin">
-            <i class="fas fa-map-pin"></i>
-        </button>
+
+    <div class="image-section" id="about">
+        <img src="img/stano_better.JPG" alt="Stano Sladek - Kouč & Expert">
+        <div class="text-overlay">
+            <h1><strong>CERTIFIKOVANÝ INTEGRATÍVNY KOUČ</strong></h1>
+            <p>
+                Ako certifikovaný integratívny kouč PCIC, expert na medzigeneračnú komunikáciu a bývalý úspešný podnikateľ v e-commerce, pomáham jednotlivcom a rodinám budovať zdravé vzťahy, objaviť svoj potenciál a dosiahnuť harmóniu medzi osobným a profesionálnym životom.
+            </p>
+            <span class="signature">Stano Sládek</span>
+        </div>
     </div>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- New Help Section -->
+    <section class="help-section">
+        <h2 class="section-title slide-in-right">S čím vám môžeme pomôcť ?</h2>
+        
+        <div class="help-grid">
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/pexels-karolina-grabowska-6028540.jpeg" alt="Stres a Úzkosť">
+                </div>
+                <h3>Stres, Úzkosť & Depresia</h3>
+                <p>Vonkajšie faktory, nedostatok vnútornej harmónie a emocionálna nestabilita môžu spôsobiť psychické poruchy, ktoré znepríjemňujú život. Kouč vám pomôže nájsť základné príčiny a poskytne vám nástroje a metódy na ich prekonanie.</p>
+            </div>
+
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/trauma.jpg" alt="Emocionálna Bolesť">
+                </div>
+                <h3>Emocionálna Bolesť & Trauma</h3>
+                <p>Naša myseľ má tendenciu dlhšie sa držať nešťastných udalostí alebo zlých situácií v našich životoch. To môže viesť k emocionálnej bolesti a traume, ktorá následne spôsobuje zhoršenie správania a zhoršuje náš život.</p>
+            </div>
+
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/relationship.jpg" alt="Vzťahové Problémy">
+                </div>
+                <h3>Vzťahové Problémy</h3>
+                <p>Dôvera, rešpekt, láska, porozumenie a prijatie partnera takého, aký je - to sú základné piliere každého zdravého intímneho vzťahu. Keď vznikajú konflikty, hádky, neúcta a nedôvera, je dôležité venovať pozornosť základom vz��ahu.</p>
+            </div>
+
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/time.jpg" alt="Časový Manažment">
+                </div>
+                <h3>Časový Manažment</h3>
+                <p>Efektívne riadenie času vám umožní byť produktívnejší, znížiť stres a dosiahnuť ciele. Kouč vám pomôže s časovým manažmentom poskytnutím nástrojov, motivácie a stratégií na plánovanie času, stanovenie priorít a udržanie správneho smeru.</p>
+            </div>
+
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/lonely.jpg" alt="Prázdnota a Osamelosť">
+                </div>
+                <h3>Prázdnota & Osamelosť</h3>
+                <p>V dnešnom rýchlom živote môže byť mnoho faktorov, keď sa človek začne cítiť osamelý alebo prázdny. Či už je to presťahovanie za prácou, neschopnosť zdieľať pocity s rodinou/priateľmi, alebo neschopnosť spojiť sa s ľuďmi v určitej životnej fáze.</p>
+            </div>
+
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/anger.jpg" alt="Zvládanie Hnevu">
+                </div>
+                <h3>Zvládanie Hnevu</h3>
+                <p>Hnev je niekedy nevyhnutná emócia, ale môže byť deštruktívny, ak nie je zvládaný zdravým spôsobom. Zvládanie hnevu je schopnosť kontrolovať svoj hnev a vyjadrovať ho zdravým spôsobom. Kouč vám pomôže identifikovať spúšťače, zvládať hnev a efektívne komunikovať.</p>
+            </div>
+
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/pexels-shkrabaanthony-5217843.jpeg" alt="Negatívne Myšlienky">
+                </div>
+                <h3>Negatívne Myšlienky</h3>
+                <p>Sme neustále bombardovaní negatívnymi informáciami alebo situáciami. Či už zo sociálnych médií, správ, vzťahov, od priateľov alebo rodiny. Je ťažké vyhnúť sa rôznym formám negativity. Toto neustále vystavenie negatívnym myšlienkam môže mať vplyv na naše duševné zdravie.</p>
+            </div>
+
+            <div class="help-item">
+                <div class="help-image-container">
+                    <img src="img/profile_pic.jpg" alt="Osobný Rast">
+                </div>
+                <h3>Osobný Rast</h3>
+                <p>Kouč vám pomôže identifikovať vaše ciele, vytvoriť plán na ich dosiahnutie a sledovať váš pokrok. Pomôže vám tiež prekonať výzvy, rozvíjať nové zručnosti a zlepšiť sebapoznanie.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!--<div class="service-boxes" id="services">
+        <div class="box turquoise">Integratívny koučing pre jednotlivcov a páry</div>
+        <div class="box light-gray">Medzigeneračná komunikácia a rodinné vzťahy</div>
+        <div class="box dark-gray">Kariérne poradenstvo a podnikateľský mentoring</div>
+        <div class="box light-gray">Workshopy efektívnej komunikácie pre firmy</div>
+    </div>-->
+
+    <section class="about-me" id="about">
+        <h2 class="section-title slide-in-right">Prečo som tým pravým koučom pre vás?</h2>
+        <div class="about-content">
+            <ul class="about-list">
+                <li>Certifikovaný integratívny kouč PCIC s viac ako 10 rokmi praxe</li>
+                <li>Úspešný podnikateľ s skúsenosťami z vedenia viacerých e-shopov</li>
+                <li>Expert na medzigeneračnú komunikáciu a riešenie rodinných konfliktov</li>
+                <li>Špecialista na osobný rozvoj a budovanie sebavedomia</li>
+                <li>Autor populárnych workshopov o efektívnej komunikácii pre firmy</li>
+                <li>Pravidelný prispievateľ do odborných časopisov o koučingu a osobnom rozvoji</li>
+                <li>Neustále sa vzdelávam v najnovších trendoch koučingu a psychológie</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="resources-section">
+        <h2 class="section-title slide-in-right">Pripravení na svoju transformáciu?</h2>
+        <p>Tieto 3 kľúčové zdroje vám pomôžu zvládnuť každodenné výzvy, maximalizovať váš potenciál a vytvoriť život, po ktorom skutočne túžite.</p>
+        <div class="resource-boxes">
+            <div class="resource-box">
+                <img src="img/confidence.jpg" alt="Ako veriť sebe samému">
+                <h3>Ako veriť sebe samému</h3>
+                <p>Objavte, ako eliminovať pochybnosti o sebe a budovať neotrasiteľnú sebadôveru.</p>
+            </div>
+            <div class="resource-box">
+                <img src="img/speaker.jpg" alt="Efektívna komunikácia v rodine">
+                <h3>Efektívna komunikácia v rodine</h3>
+                <p>Naučte sa, ako zlepšiť komunikáciu medzi generáciami a vytvoriť harmonické rodinné vzťahy.</p>
+            </div>
+            <div class="resource-box">
+                <img src="img/success.jpg" alt="Od nápadu k úspechu">
+                <h3>Od nápadu k úspechu</h3>
+                <p>Získajte praktické rady, ako premeniť váš podnikateľský nápad na úspešný biznis.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <span class="copyright">© Stano Sládek</span>
+            <span class="webdesign">webdesign by Bednařík</span>
+        </div>
+    </footer>
     <script src="scripts.js"></script>
 </body>
 </html>

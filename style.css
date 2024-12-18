@@ -1,619 +1,976 @@
-/* Import Open Sans font */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-
-/* Set Open Sans as the default font for the entire body */
-body {
+:root {
+    /* Primary colors */
+    --primary-dark: #c9c8c2;
+    --primary-light: black;
+    
+    /* Secondary colors */
+    --secondary-dark: #1c2331;
+    --secondary-light: #f7f9fc;
+    
+    /* Accent colors */
+    --accent-blue: #3498db;
+    --accent-gold: #dbbe5e;
+    
+    /* Text colors */
+    --text-dark: #c9c8c2;
+    --text-light: black;
+    --text-muted: #555555;
+    
+    /* Background colors */
+    --bg-light-gray: #f0f4f8;
+    --bg-lighter-gray: #f7f9fc;
+    --bg-lightest-gray: #ffffff;
+    --bg-dark-gray: #e0e5ec;
+    
+    /* Overlay colors */
+    --overlay-dark: rgba(28, 35, 49, 0.8);
+    --overlay-light: rgba(255, 255, 255, 0.1);
+    
+    /* Shadow color */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  @font-face {
+      font-family: 'Creation';
+      src: url('../css/fonts/creation-font/Creation.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+  
+  
+  .creation-text {
+      font-family: 'Creation', 'Arial', sans-serif;
+  }
+  
+  /* Example of using these variables */
+  body {
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    font-family: 'Open Sans', sans-serif;
-    overflow: hidden; /* Prevent scrolling */
-}
-
-
-
-/* App name styling */
-.app-name {
-    color: white;
-    font-size: 24px; /* Increased from 18px */
-    font-weight: bold;
-    white-space: nowrap;
-    margin: 25px 0; /* Increased margin */
-    text-align: center;
-    transition: margin-left 0.6s ease;
-    width: 100%; /* Ensure full width */
-    padding: 0 15px;
-    border-bottom: 1px solid #444; /* Add separator */
-    padding-bottom: 20px;
-}
-
-/* Initials styling, visible by default */
-.initials {
-    display: inline-block;
-    transition: transform 0.6s ease, opacity 0.6s ease; /* Slowed to 0.6s */
-}
-
-/* Expansion parts (hidden by default) */
-.expansion {
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
-    display: inline-block;
-    transition: opacity 0.6s ease, width 0.6s ease, transform 0.6s ease; /* Slowed to 0.6s */
-    transform: translateX(-10px); /* Slight shift to the left initially */
-}
-
-
-/* Expanded navbar styling for full app name */
-#vertical-navbar.expanded .app-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#vertical-navbar.expanded .expansion {
-    opacity: 1;
-    width: auto;
-    transform: translateX(0); /* Shift back into place smoothly */
-}
-
-#vertical-navbar.expanded .app-name .initials {
-    transform: translateX(0); /* Reset any transformations */
-}
-
-/* Extra spacing adjustments for appearance */
-.app-name .e {
-    margin-left: -2px; /* Adjust as needed for natural appearance */
-}
-.app-name .ress {
-    margin-left: 1px;
-}
-
-/* Remove expand button styling */
-#expand-btn {
-    display: none; /* Or you can completely remove this block */
-}
-
-/* Update navbar styling - remove transition references to button */
-#vertical-navbar {
-    width: 0;
-    height: 100vh;
-    background-color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: fixed;
-    left: 0;
-    top: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    transition: width 0.3s ease;
-    z-index: 1000;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-/* WebKit and Chromium-based browsers (Chrome, Edge, Opera, etc.) */
-#vertical-navbar::-webkit-scrollbar {
-    display: none;
-}
-
-/* Expanded navbar width */
-#vertical-navbar.expanded {
-    width: 250px;
-    overflow-y: auto;
-}
-
-/* Toggle button arrow visibility */
-#vertical-navbar.expanded #expand-btn .fa-angle-right {
-    display: none;
-}
-
-#vertical-navbar.expanded #expand-btn .fa-angle-left {
-    display: inline-block;
-}
-
-/* Map and button container styling */
-#map {
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: margin-left 0.3s ease;
-}
-
-/* Add these styles for the new map controls */
-#map-controls {
-    position: fixed;
-
-    z-index: 1001;
-    display: flex;
-    flex-direction: row;  /* Changed from column to row */
-    gap: 10px;
-}
-
-#map-controls button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: #333;
-    transition: background-color 0.3s ease;
-}
-
-#map-controls button:hover {
-    background-color: #f0f0f0;
-}
-
-/* Adjust for smaller screens */
-@media (max-width: 768px) {
-    #map-controls {
-        top: 10px;  /* Changed from bottom to top */
-        right: 10px;
-    }
-
-    #map-controls button {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-    }
-}
-
-/* Remove the old button-container styles */
-#button-container {
-    display: none;
-}
-
-/* Font weights for other elements */
-.some-element {
-    font-weight: 300; /* Light */
-}
-
-.another-element {
-    font-weight: 700; /* Bold */
-}
-
-/* Add these styles for the nearest containers in navbar */
-#nearest-containers {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    width: 100%;
-    color: white;
-}
-
-/* Updated styles for containers in navbar */
-#nearest-containers li {
-    padding: 15px;
-    border-bottom: 1px solid #444;
-    background: #444; /* Darker background */
-    margin: 10px 15px; /* Add margin around each container */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    transition: transform 0.2s ease, background 0.2s ease; /* Smooth hover effect */
-}
-
-#nearest-containers li:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
-    background: #4a4a4a; /* Slightly lighter on hover */
-}
-
-#nearest-containers .container-type {
-    font-size: 15px;
-    font-weight: 500;
-    color: #fff;
-    margin-bottom: 8px;
-}
-
-#nearest-containers .container-distance {
-    font-size: 13px;
-    color: #ccc;
-    margin-bottom: 12px;
-    font-weight: 300;
-}
-
-#nearest-containers .directions-btn {
-    background: #666;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    width: 100%;
-    font-weight: 500;
-    transition: background 0.2s ease;
-}
-
-#nearest-containers .directions-btn:hover {
-    background: #777;
-}
-
-/* Add these styles for the toggle button */
-#navbar-toggle {
-    position: absolute;
-    right: -30px;
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Center vertically */
-    width: 30px;
-    height: 50px; /* Make button taller */
-    background: #333;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1001;
-    transition: background 0.3s ease;
-}
-
-#navbar-toggle:hover {
-    background: #444;
-}
-
-/* Ensure smooth rotation of the arrow */
-#navbar-toggle i {
-    transition: transform 0.3s ease;
-}
-
-#vertical-navbar:not(.expanded) #navbar-toggle i {
-    transform: rotate(180deg);
-}
-
-#vertical-navbar.expanded #navbar-toggle i {
-    transform: rotate(0deg);
-}
-
-/* Adjust navbar z-index to ensure toggle button is visible */
-#vertical-navbar {
-    z-index: 1000;
-}
-
-/* Ensure smooth transitions */
-#vertical-navbar {
-    transition: width 0.3s ease;
-}
-
-#navbar-toggle i {
-    transition: transform 0.3s ease;
-}
-
-#container-info {
-    padding: 15px;
-    color: white;
-    border-bottom: 1px solid #444;
-}
-
-#container-info h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-#container-info button {
-    display: block;
-    width: 100%;
-    padding: 8px 12px;
-    margin-top: 10px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-#container-info button:hover {
-    background-color: #555;
-}
-
-/* Add styles for the selected point header */
-.selected-point-header {
-    color: white;
-    font-size: 18px;
-    padding: 15px;
-    margin: 0;
-    background-color: #444;
-    border-bottom: 1px solid #555;
-}
-
-.selected-point-subheader {
-    color: #aaa;
-    font-size: 14px;
-    font-weight: normal;
-    margin-top: 5px;
-}
-
-/* Responsive adjustments for smaller devices */
-@media (max-width: 768px) {
-    #vertical-navbar {
-        width: 0; /* Start with no width */
-        transition: width 0.3s ease, transform 0.3s ease;
-    }
-
-    #vertical-navbar.expanded {
-        width: 100%; /* Full width when expanded */
-        transform: translateX(0);
-    }
-
-    #map {
-        width: 100%; /* Full width by default */
-        margin-left: 0;
-        transition: width 0.3s ease, margin-left 0.3s ease;
-    }
-
-    #vertical-navbar.expanded + #map {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .app-name {
-        font-size: 20px;
-        margin: 15px 0;
-        padding-left: 40px; /* Make room for the toggle button */
-    }
-
-    #nearest-containers li {
-        padding: 12px;
-        margin: 8px 12px;
-    }
-
-    #nearest-containers .container-type {
-        font-size: 16px;
-    }
-
-    #nearest-containers .container-distance {
-        font-size: 14px;
-    }
-
-    #nearest-containers .directions-btn {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-
-    #new-navbar-toggle {
-        top: 10px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
-        background-color: rgba(51, 51, 51, 0.7);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #vertical-navbar.expanded #new-navbar-toggle {
-        left: auto;
-        right: 10px;
-    }
-
-    .selected-point-header {
-        font-size: 18px;
-        padding: 12px;
-    }
-
-    .selected-point-subheader {
-        font-size: 14px;
-    }
-
-    #container-info button {
-        padding: 10px 14px;
-        font-size: 16px;
-    }
-}
-
-/* Add these styles to ensure proper scrolling behavior */
-#vertical-navbar .expansion {
-    width: 100%;
-    min-height: min-content; /* Ensure content pushes the height */
-}
-
-/* Ensure the toggle button stays in place */
-#navbar-toggle,
-#collapse-navbar {
-    position: fixed;
-    left: 10px; /* Remove this line */
-}
-
-/* Updated styles for collapse-navbar */
-#collapse-navbar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1001;
-    transition: transform 0.3s ease;
-    opacity: 0; /* Hidden by default */
-    pointer-events: none; /* Not clickable when hidden */
-}
-
-#vertical-navbar.expanded #collapse-navbar {
-    opacity: 1;
-    pointer-events: auto; /* Clickable when visible */
-}
-
-#collapse-navbar:hover {
-    transform: scale(1.1);
-}
-
-#collapse-navbar i {
-    transition: transform 0.3s ease;
-}
-
-/* Adjust the app name to accommodate the collapse button */
-.app-name {
-    padding-right: 40px; /* Add space for the collapse button */
-}
-
-/* You can remove or comment out these styles if they're not needed anymore */
-/*
-#vertical-navbar.expanded #collapse-navbar i {
-    transform: rotate(180deg);
-}
-*/
-
-/* Ensure the navbar toggle button (for expanding) stays in place */
-#navbar-toggle {
-    position: absolute;
-    right: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    /* ... rest of the styles ... */
-}
-
-/* New navbar toggle button styles */
-#new-navbar-toggle {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    z-index: 1010;
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-#new-navbar-toggle i {
-    color: black; /* This makes the icon black */
-}
-
-#new-navbar-toggle:hover {
-    transform: scale(1.1);
-}
-
-/* Adjust the toggle button for expanded navbar */
-#vertical-navbar.expanded #new-navbar-toggle {
-    left: 260px; /* Adjust based on your expanded navbar width */
-    background-color: transparent;
-}
-
-#vertical-navbar.expanded #new-navbar-toggle i {
-    color: white; /* Change icon color to white when navbar is expanded */
-}
-
-/* For smaller screens */
-@media (max-width: 768px) {
-    #vertical-navbar.expanded #new-navbar-toggle {
-        left: auto;
-        right: 10px;
-    }
-}
-
-/* Adjust the app name to accommodate the new toggle button */
-.app-name {
-    margin-top: 50px; /* Increased top margin to make room for the button */
-}
-
-/* When navbar is expanded */
-#vertical-navbar.expanded + #map {
-    width: 100%;
-    margin-left: 0;
-}
-
-/* Add this new rule */
-#container-info:empty {
-    display: none;
-}
-
-/* Ensure the toggle button stays on top */
-#new-navbar-toggle {
-    z-index: 1010;
-}
-
-/* Adjust map controls for better visibility */
-#map-controls {
-    top: 20px;
-    bottom: 20px;
-    right: 20px;
-}
-
-/* Ensure the navbar content is scrollable */
-#vertical-navbar .expansion {
-    max-height: calc(100vh - 60px); /* Adjust based on your header height */
-    overflow-y: auto;
-}
-
-/* Initial state for larger screens */
-@media (min-width: 769px) {
-    #vertical-navbar.expanded {
-        width: 250px;
-    }
-
-    #vertical-navbar.expanded + #map {
-        width: 100%;
-        margin-left: 0;
-    }
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    #vertical-navbar.expanded {
-        width: 100%;
-    }
-
-    #vertical-navbar.expanded + #map {
-        width: 100%;
-        margin-left: 0;
-    }
-}
-
-/* Update navbar styling for mobile */
-@media (max-width: 768px) {
-    #vertical-navbar {
-        width: 100%;
-        height: 0;
-        bottom: 0;
-        top: auto;
-        transition: height 0.3s ease;
-    }
-
-    #vertical-navbar.expanded {
-        height: 60%;
-    }
-
-    #new-navbar-toggle {
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        z-index: 1010;
-    }
-}
-
-/* Ensure map is full screen */
-#map {
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
+    background-color: var(--primary-light);
+    color: var(--text-dark);
+  }
+  
+  .top-stripe {
+      background-color: var(--primary-dark);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-weight: bold;
+  }
+  
+  .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px;
+      background-color: var(--bg-light-gray);
+  }
+  
+  .text-section {
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  
+  h1 {
+      font-size: 36px;
+      color: #fff;
+      margin-top: 0;
+  }
+  
+  h2 {
+      font-size: 24px;
+      color: #ddd;
+  }
+  
+  p {
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.5;
+  }
+  
+  .image-section {
+      position: relative;
+      width: 100%;
+      height: 110vh;
+      overflow: hidden;
+      background-color: #e0e5ec;
+  }
+  
+  .image-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 75% 30%;
+      transform: scale(1);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-overlay {
+      position: absolute;
+      top: 20%;
+      left: 3%;
+      transform: translateX(0);
+      max-width: 40%;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      animation: slideIn 1s ease-out forwards;
+      font-family: 'Montserrat', sans-serif;
+      background-color: transparent;
+  }
+  
+  .text-overlay h1 {
+      color: #333;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      font-weight: 400;
+  }
+  
+  .text-overlay p {
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+  }
+  
+  .service-boxes {
+      display: flex;
+      justify-content: space-around;
+      padding: 1.25rem;
+      background-color: #f0f2f5;
+      transition: background-color 0.5s ease;
+      overflow: hidden;
+  }
+  
+  
+  .box {
+      flex: 1;
+      padding: 2rem 1.25rem;
+      margin: 0.3125rem;
+      text-align: center;
+      color: black;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      animation: slideInFromBottom 0.5s ease-out forwards;
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  
+  .box:nth-child(1) { animation-delay: 0.1s; }
+  .box:nth-child(2) { animation-delay: 0.2s; }
+  .box:nth-child(3) { animation-delay: 0.3s; }
+  .box:nth-child(4) { animation-delay: 0.4s; }
+  
+  .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .turquoise {
+      background-color: var(--primary-dark); /* A rich, elegant turquoise */
+  }
+  
+  .light-gray {
+      background-color: var(--bg-light-gray);
+      color: black;
+  }
+  
+  .dark-gray {
+      background-color: var(--primary-dark); /* A sophisticated dark gray */
+  }
+  
+  
+  @keyframes slideInFromBottom {
+      from {
+          opacity: 0;
+          transform: translateY(50px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  .navbar {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 3rem;
+      background-color: rgba(232, 238, 254, 0);
+    
+      color: black;
+      top: 0;
+      z-index: 1000;
+      box-sizing: border-box;
+  }
+  
+  .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+  }
+  
+  .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.1rem;
+      position: relative;
+      padding-bottom: 0.25rem;
+  }
+  
+  /* Remove the gold hover effect */
+  .nav-links a:hover {
+      color: #333;
+  }
+  
+  /* Add underline effect */
+  .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #333;
+      transition: width 0.3s ease;
+  }
+  
+  /* Show underline on hover */
+  .nav-links a:hover::after {
+      width: 100%;
+  }
+  
+  /* Active state for current page */
+  .nav-links a.active {
+      font-weight: 500;
+  }
+  
+  .nav-links a.active::after {
+      width: 100%;
+  }
+  
+  .logo {
+      font-size: 2rem;
+      margin-right: 1rem;
+  }
+  
+  .name {
+      font-family: 'Montserrat', sans-serif;  /* Changed font family */
+      font-weight: 500; /* Increased font weight for extra thickness */
+      font-size: 2.25rem; /* Slightly increased font size */
+      color: #ffffff;
+      text-transform: uppercase; /* Optional: makes the text all caps for added emphasis */
+      letter-spacing: 1px; /* Optional: adds slight spacing between letters */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Optional: adds a subtle shadow for depth */
+  }
+  
+  .name-link {
+      text-decoration: none;
+      color: inherit;
+  }
+  
+  .name-link:hover {
+      color: var(--accent-gold); /* Or any color you prefer for hover state */
+  }
+  
+  .contact-btn {
+      background-color: var(--accent-gold);
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s ease;
+  }
+  
+  .contact-btn:hover {
+      background-color: var(--accent-gold);
+      color: #ffffff;
+  }
+  
+  .contact_bg {
+      background-color: #e0e5ec;
+      color: #ffffff;
+      padding: 2rem 2rem 1rem;
+      text-align: center;
+      transition: background-color 1s ease;
+  }
+  
+  .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-form h2 {
+      margin-bottom: 1.5rem;
+      color: var(--accent-gold);
+      font-size: 2rem;
+      text-align: center;
+  }
+  
+  .contact-form form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+      width: 100%;
+      max-width: 400px; /* Adjust this value as needed */
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+  }
+  
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 2px #dbbe5e;;
+  }
+  
+  .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+  }
+  
+  .contact-form button {
+      background-color: var(--accent-gold);
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+      max-width: 400px; /* Match the input fields */
+      margin-top: 1rem;
+  }
+  
+  .contact-form button:hover {
+      background-color: #dbbe5e;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media screen and (max-width: 480px) {
+      .contact-form {
+          padding: 1.5rem;
+      }
+  
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form button {
+          max-width: 100%;
+          padding: 0.6rem;
+          font-size: 0.9rem;
+      }
+  }
+  
+  @keyframes slideIn {
+      from {
+          transform: translateX(100%);
+          opacity: 0;
+      }
+      to {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+  
+  html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* Adjust this value based on your navbar height */
+  }
+  
+  .about-me {
+      background-color: #f0f4f8;
+      padding: 4rem 2rem;
+  }
+  
+  .section-title {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 4rem;
+      font-weight: 300;
+  }
+  
+  .section-title .highlight {
+      color: gold;
+  }
+  
+  .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+  }
+  
+  .about-list {
+      list-style-type: none;
+      padding: 0;
+  }
+  
+  .about-list li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: black;
+  }
+  
+  .about-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: black;
+      font-weight: bold;
+  }
+  
+  .resources-section {
+      background-color: #e0e5ec;
+      padding: 4rem 2rem;
+      text-align: center;
+  }
+  
+  .resources-section h2 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+  }
+  
+  .resources-section > p {
+      font-size: 1.2rem;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+  }
+  
+  .resource-boxes {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+  }
+  
+  .resource-box {
+      flex-basis: calc(33.333% - 2rem);
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.5s ease-out forwards, pulse 2s ease-in-out infinite;
+      opacity: 0;
+  }
+  
+  .resource-box:nth-child(1) { animation-delay: 0.2s, 0.2s; }
+  .resource-box:nth-child(2) { animation-delay: 0.4s, 0.4s; }
+  .resource-box:nth-child(3) { animation-delay: 0.6s, 0.6s; }
+  
+  .resource-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      animation-play-state: paused;
+  }
+  
+  .resource-box img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+  }
+  
+  .resource-box h3 {
+      font-size: 1.5rem;
+      color: #1c2331;
+      margin: 1rem 0;
+      padding: 0 1rem;
+  }
+  
+  .resource-box p {
+      font-size: 1rem;
+      color: #34495e;
+      padding: 0 1rem 1rem;
+  }
+  
+  @keyframes fadeInUp {
+      from {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  @keyframes pulse {
+      0% {
+          transform: scale(1);
+      }
+      50% {
+          transform: scale(1.03);
+      }
+      100% {
+          transform: scale(1);
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .resource-box {
+          flex-basis: 100%;
+      }
+  }
+  
+  @media (max-width: 768px) {
+      .service-boxes {
+          flex-direction: column;
+      }
+      
+      .box {
+          margin: 0.625rem 0;
+      }
+  }
+  
+  .story-section {
+      background-color: #f7f9fc;
+      padding: 4rem 2rem;
+      text-align: center;
+      overflow-x: hidden; /* Add this line */
+      scroll-margin-top: 80px; /* Adjust this value based on your navbar height */
+  }
+  
+  .story-boxes {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+  }
+  
+  .story-box {
+      flex-basis: calc(33.333% - 2rem);
+      background-color: var(--primary-dark);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 1s ease;
+  }
+  
+  @keyframes slideInFromLeft {
+      from {
+          transform: translate3d(-100%, 0, 0);
+          opacity: 0;
+      }
+      to {
+          transform: translate3d(0, 0, 0);
+          opacity: 1;
+      }
+  }
+  
+  @keyframes slideInFromRight {
+      from {
+          transform: translate3d(100%, 0, 0);
+          opacity: 0;
+      }
+      to {
+          transform: translate3d(0, 0, 0);
+          opacity: 1;
+      }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+      .left-box-animation {
+          animation: slideInFromLeft 1s forwards;
+      }
+      .middle-box-animation {
+          animation: slideInFromRight 1s forwards;
+      }
+      .right-box-animation {
+          animation: slideInFromBottom 1s forwards;
+      }
+  }
+  
+  .story-box {
+      flex-basis: calc(33.333% - 2rem);
+      background-color: var(--primary-dark);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 1s ease;
+  }
+  
+  .story-box h3 {
+      color: black; /* Darker color for headings */
+      margin-bottom: 1rem;
+  }
+  
+  .story-box p {
+      color: black; /* Darker color for better readability */
+      line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: 700; /* Changed from 500 to 700 for bolder text */
+  }
+  
+  p, li {
+      font-weight: 400;
+  }
+  
+  strong, b {
+      font-weight: 700;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 1200px) {
+      .text-overlay {
+          max-width: 40%;
+      }
+  }
+  
+  @media screen and (max-width: 992px) {
+      .text-overlay {
+          max-width: 50%;
+      }
+  
+      .service-boxes {
+          flex-wrap: wrap;
+      }
+  
+      .box {
+          flex-basis: calc(50% - 0.625rem);
+      }
+  
+      .resource-box {
+          flex-basis: calc(50% - 2rem);
+      }
+  
+      .story-box {
+          flex-basis: calc(50% - 2rem);
+      }
+  
+      .contact-form {
+          padding: 1.5rem;
+      }
+  
+      .contact-form input,
+      .contact-form textarea {
+          padding: 0.6rem;
+          font-size: 0.9rem;
+      }
+  
+      .contact-form button {
+          padding: 0.6rem 1.2rem;
+          font-size: 0.9rem;
+      }
+  }
+  
+  @media screen and (max-width: 844px) {
+      .story-box {
+          flex-basis: 100%;
+          margin-bottom: 2rem;
+      }
+      
+  }
+  
+  @media screen and (max-width: 768px) {
+      .navbar {
+          flex-direction: column;
+          padding: 1rem;
+      }
+  
+      .nav-links {
+          margin-top: 1rem;
+      }
+  
+      .nav-links li {
+          margin: 0.5rem 0;
+      }
+  
+      .image-section {
+          height: auto;
+      }
+  
+      .text-overlay {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: none;
+          max-width: 100%;
+          background-color: rgba(28, 35, 49, 0.9);
+          padding: 2rem;
+          border-radius: 0;
+      }
+  
+      .service-boxes {
+          flex-direction: column;
+      }
+  
+      .box {
+          flex-basis: 100%;
+          margin: 0.625rem 0;
+      }
+  
+      .resource-box {
+          flex-basis: 100%;
+      }
+  
+      .story-box {
+          flex-basis: 100%;
+      }
+  
+      .section-title {
+          font-size: 2rem;
+      }
+  
+      .about-list li {
+          font-size: 1rem;
+      }
+  }
+  
+  @media screen and (max-width: 480px) {
+      .name {
+          font-size: 1.5rem;
+      }
+  
+      h1 {
+          font-size: 24px;
+      }
+  
+      h2 {
+          font-size: 20px;
+      }
+  
+      p {
+          font-size: 14px;
+      }
+  
+      .nav-links a {
+          font-size: 0.9rem;
+          padding: 0.4rem 0.8rem;
+      }
+  
+      .contact-form input,
+      .contact-form textarea {
+          padding: 0.5rem;
+      }
+  
+      .contact-form button {
+          padding: 0.5rem 1rem;
+      }
+  }
+  
+  @keyframes fadeInUp {
+      from {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  .fadeInUp {
+      animation: fadeInUp 0.5s ease-out forwards;
+  }
+  
+  @keyframes slideInFromRight {
+      from {
+          transform: translateX(100%);
+          opacity: 0;
+      }
+      to {
+          transform: translateX(0);
+          opacity: 1;
+      }
+  }
+  
+  .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      animation: slideInRight 1s ease forwards;
+  }
+  
+  @keyframes slideInRight {
+      to {
+          opacity: 1;
+          transform: translateX(0);
+      }
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+      .image-section {
+          display: flex;
+          flex-direction: column;
+          height: auto;
+      }
+  
+      .image-section img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+      }
+  
+      .text-overlay {
+          position: relative;
+          top: 0;
+          left: 0;
+          transform: none;
+          max-width: 100%;
+          width: 100%;
+          box-sizing: border-box;
+          background-color: rgba(28, 35, 49, 0.9);
+      }
+  }
+  
+  
+  .copyright {
+      font-family: 'Great Vibes', Helvetica, sans-serif;
+       /*font-family: 'Arizonia', Helvetica, sans-serif;
+      font-family: 'Monsieur La Doulaise', Helvetica, sans-serif;*/
+      float: left;
+      font-size: 2em;
+  }
+  .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #333;
+      display: block;
+      margin-top: 1rem;
+      text-align: left;
+  }
+  .webdesign {
+      margin-left: auto; /* Ensure it stays on the right */
+  }
+  
+  @media (max-width: 600px) {
+      .footer-content {
+          flex-direction: column;
+          text-align: center;
+      }
+      
+      .copyright, .webdesign {
+          margin: 5px 0;
+      }
+  }
+  .footer-content {
+      color: black;
+      background-color: #e0e5ec;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+      max-width: auto;
+      border-top: 1px solid #d3d3d3;
+  }
+  
+  .help-section {
+      padding: 5rem 2rem;
+      background-color: #ffffff;
+  }
+  
+  .help-title {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 4rem;
+      font-weight: 300;
+  }
+  
+  .help-title .highlight {
+      color: gold;
+  }
+  
+  .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  
+  .help-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+  
+  .help-image-container {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .help-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  
+  .help-item h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+      font-weight: 400;
+  }
+  
+  .help-item p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+      .help-section {
+          padding: 3rem 1rem;
+      }
+  
+      .help-title {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+      }
+  
+      .help-grid {
+          gap: 2rem;
+      }
+  
+      .help-image-container {
+          width: 150px;
+          height: 150px;
+      }
+  }
