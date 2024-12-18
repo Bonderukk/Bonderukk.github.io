@@ -170,11 +170,7 @@
 /* Required field indicator */
 .contact-form input:required,
 .contact-form textarea:required {
-    background-image: radial-gradient(#f00 15%, transparent 16%);
-    background-size: 1em 1em;
-    background-position: right 1em top 50%;
-    background-repeat: no-repeat;
-    background-origin: content-box;
+    background-image: none;
 }
 
 .form-group label {
@@ -194,3 +190,4 @@
         font-size: 2rem;
     }
 }
+
