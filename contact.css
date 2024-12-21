@@ -191,3 +191,143 @@
     }
 }
 
+/* Improved responsive styles */
+@media screen and (max-width: 768px) {
+    .contact-header {
+        font-size: 2rem !important;
+        margin-top: 5rem;
+        padding: 0 1rem;
+        white-space: normal; /* Allow text to wrap on small screens */
+    }
+
+    .faq-section {
+        padding: 2rem 1rem;
+    }
+
+    .faq-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .faq-container {
+        padding: 0 0.5rem;
+    }
+
+    .faq-item {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .faq-item h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .faq-item p {
+        font-size: 0.95rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+        margin: 1rem;
+        border-radius: 10px;
+    }
+
+    .contact-form h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .contact-form textarea {
+        min-height: 120px;
+    }
+
+    .contact-form button {
+        padding: 0.875rem;
+        font-size: 1rem;
+    }
+}
+
+/* Extra small devices (phones under 480px) */
+@media screen and (max-width: 480px) {
+    .contact-header {
+        font-size: 1.75rem !important;
+        margin-top: 4rem;
+    }
+
+    .faq-title {
+        font-size: 1.5rem;
+    }
+
+    .faq-item {
+        padding: 1rem;
+    }
+
+    .faq-item h3 {
+        font-size: 1rem;
+    }
+
+    .faq-item p {
+        font-size: 0.9rem;
+    }
+
+    .contact-form {
+        padding: 1.25rem;
+        margin: 0.5rem;
+    }
+
+    .contact-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.625rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Fix for notch devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .contact-header {
+        padding-top: calc(env(safe-area-inset-top) + 2rem);
+    }
+}
+
+/* Improve form usability on mobile */
+@media (hover: none) and (pointer: coarse) {
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+
+    .contact-form button {
+        min-height: 44px; /* Better touch target */
+    }
+}
+
+/* Fix for landscape mode */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+    .contact-header {
+        margin-top: 3rem;
+        font-size: 1.5rem !important;
+    }
+
+    .faq-section {
+        padding: 1rem;
+    }
+
+    .contact-form {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
