@@ -507,4 +507,14 @@ body {
     font-weight: normal;
     margin-top: 2rem;
     margin-bottom: 1.5rem;
+}
+
+/* Update header scroll styles */
+.header.scrolled .nav-menu li a {
+    color: black;
+}
+
+.header.scrolled .nav-menu li a:hover {
+    color: #c0976b;
+    opacity: 1;
 } 
