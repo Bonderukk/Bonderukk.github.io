@@ -206,3 +206,7 @@
     );
     opacity: 1;
 } 
+
+.hamburger span {
+    background-color: black;
+}
