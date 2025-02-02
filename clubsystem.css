@@ -1,0 +1,113 @@
+/* Club System Section */
+.club-system {
+    background-color: #e6e3dc;
+    padding: 8rem 2rem;
+    color: #666;
+}
+
+.club-system h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: normal;
+    margin-bottom: 3rem;
+}
+
+.club-description {
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.club-description p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+/* Video Grid */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+    }
+}
+
+@media (max-width: 768px) {
+    .club-system {
+        padding: 6rem 1rem;
+    }
+
+    .club-system h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .club-description p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}
+
+/* Footer separator */
+.footer {
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        #c0976b 30%,
+        #c0976b 70%,
+        transparent
+    );
+    opacity: 1;
+}
+
+/* Add these styles for the navigation menu */
+.nav-menu li a {
+    color: #c0976b;  /* Gold color matching the brand */
+
+}
+
+.nav-menu li a:hover {
+    color: black;
+}

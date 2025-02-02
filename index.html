@@ -3,126 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Facility Booking</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Body and Mind | Wellness Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Sports Facility Booking</h1>
-        <form id="bookingForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="name">Name: *</label>
-                    <input type="text" id="name" name="name" required>
-                    <span class="error" id="nameError"></span>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="img/pnblogo.png" alt="Body and Mind Logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Domov</a></li>
+                <li><a href="terminy.html">Termíny</a></li>
+                <li><a href="vzdelavanie.html">Vzdelávanie</a></li>
+                <li><a href="clubsystem.html">Club System</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>SILA A KRÁSA V LADNOM POHYBE</h1>
+                <p>PortDeBras je originálny program tréningov, ktorý je založený na plynulom pohybe rozvíjajúc silu a flexibilitu zároven.<br> 
+                    Zlepšuje správne zapojenie hlbokých aj povrchových svalov pri každodennom pohybe.</p>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="img/DSC05419 (1).jpg" alt="Helena Bednarík Ballová">
                 </div>
-                <div class="form-group">
-                    <label for="surname">Surname: *</label>
-                    <input type="text" id="surname" name="surname" required>
-                    <span class="error" id="surnameError"></span>
+                <div class="about-content">
+                    <h2>O mne</h2>
+                    <p>Volám sa Helena Bednarík Ballová a aktívnemu cvičeniu som sa začala venovať počas vysokej školy, začínala som ako inštruktorka aerobiku. S prichádzajúcimi novými formami cvičenia som postupne rokmi prešla azda všetkými druhmi od BodyWorku cez HiLow Aerobic, Step Aerobic, FitBall Aerobic až po Spinning. Neskôr som vzhľadom na svoje pracovné vyťaženie vo svojej profesii obmedzila predcvičovanie, ale ako aktívny cvičenec som sa venovala klasickému aerobiku a so záujmom som sa zúčastňovala rôznych pohybovo zameraných kongresov.</p>
+                    
+                    <p>Tieto ma naďalej posúvali na fyzickej aj mentálnej rovine, až ma v novembri 2008 veľmi zaujala nová forma cvičenia - PortDeBras®, ktorej tvorcom je ruský prezentér, tanečník a choreograf Vladimír Snezhik. V začiatkoch intenzívne spolupracoval so španielskym prezentérom a fyzioterapeutom Juliom Papim.</p>
+                    
+                    
+                    <p>PortDeBras® som sa začala intenzívne venovať a často som cestovala na workshopy a na hodiny do zahraničia. Absolvovala som opakované mnohé certifikované workshopy inštruktorov PortDeBras®.</p>
+                
+                    <p><br><br><br>​V júli 2015 som absolvovala najvyšší stupeň vo vzdelávaní PortDeBras® a stala som sa PortDeBras Elite Trainer. Na jeseň 2016 sme pod hlavičkou MOVE academy zorganizovali prvý Trainer Course mimo Ruska a umožnili tak ostatným inštruktorom PortDeBrass® si zvýšiť svoju kvalifikáciu. V roku 2020 som získala aj kvalifikačne vyšší stupeň a to PortDeBrass® EXPERT. Od Novembra 2017 do Januára 2024 som zastupovala PortDeBrass® pre celú Európu ako Executive Director for PortDeBrass® . </p>
+                
+                    <p>​Práve Vladimir Snezhik ma naviedol na to, aby som sa začala venovať aj Pilatesu a nikdy by som neverila, že ma Pilates tak osloví. Základné vzdelanie Pilates som absolvovala u Renáty Sabongui v Prahe a následne som sa vzdelávala u renomovaných zahraničných lektorov a tak som mala možnosť vyskúšať rôzne prístupy k tomuto skvelému cvičeniu a viedla som pravidelné hodiny Pilatesu. Aktuálne si udržujem aktívny vzťah s Pilatesom najčastejšie na strojoch REFORMER - no už iba z pozície klienta.</p>
+                
+                    <p>Pre vlastný rozvoj som sa začala v lete 2014 venovať Ashtanga Joge a rada svoje nadšenie v tomto smere taktiež posúvam ďalej širokej verejnosti :)</p>
+                
+                    <p>Okrem rozvoju tela sa na profesionálnej úrovni venujem aj rozvoju mysle a ducha pre jednotlivcom a firmy v rámci osobnostného rozvoja pod značkou Hellena INSPIRATIONS. </p>
+                
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Gender: *</label>
-                    <div class="gender-options">
-                        <label class="gender-option">
-                            <input type="radio" id="male" name="gender" value="male" required>
-                            <span class="radio-button"></span>
-                            Male
-                        </label>
-                        <label class="gender-option">
-                            <input type="radio" id="female" name="gender" value="female" required>
-                            <span class="radio-button"></span>
-                            Female
-                        </label>
+        </section>
+
+        <!-- What is PortDeBras Section -->
+        <section id="what-is-pdb" class="what-is-pdb">
+            <div class="container">
+                <div class="text-content">
+                    <h2>KOMPLEXNÝ CVIČEBNÝ PROGRAM PRE TELO & DUŠU</h2>
+                    <p>
+                        PortDeBras je nový koncept určený pre všetkých bez ohľadu na vek a skúsenosti. Je to harmonizujúce cvičenie určené pre všetkých, ktorí radi objavujú nové formy pohybových cvičení, obľubujú tanec a zároveň chcú efektívne a rovnomerne rozvíjať svoju telesnú a duševnú harmóniu.
+                    </p>
+                    <p>
+                        PortDeBras je originálny program tréningov, ktorý je založený na plynulom pohybe rozvíjajúc silu a flexibilitu zároveň. Zlepšuje správne zapojenie hlbokých aj povrchových svalov pri každodennom pohybe.
+                    </p>
+                    <p>
+                        Podobne ako iné programy Body and Mind, prináša PortDeBras® psychickú relaxáciu. Vďaka esteticky plynulým pohybom v harmonickom súlade s motivujúcou a zároveň ukľudňujúcou hudbou, pravidelnému dýchaniu a koncentrácii na vlastné telo býva zážitok z cvičenia neopakovateľný.
+                    </p>
+                    <h2>CVIČENIE ZLEPŠUJE</h2>
+                <ul>
+                    <li>pohybovú koordináciu</li>
+                    <li>estetiku pohybu</li>
+                    <li>zmysel pre rytmus</li>
+                    <li>pohybové návyky</li>
+                    <li>kontrolu pohybov celého tela</li>
+                    <li>držanie tela</li>
+                </ul>
+                </div>
+                <div class="image-content">
+                    <img src="img/DSC05474 - Copy.jpg" alt="PortDeBras Exercise" style="width: 100%; margin-bottom: 2rem;">
+                    <div class="image-grid">
+                        
+                        <img src="img/DSC01888 (1).jpg" alt="PortDeBras Detail">
+                        <img src="img/42058355_10212862095449703_6725541013097545728_n.jpg" alt="PortDeBras Exercise">
                     </div>
-                    <span class="error" id="genderError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="birthdate">Date of Birth: *</label>
-                    <input type="date" id="birthdate" name="birthdate" required>
-                    <span class="error" id="birthdateError"></span>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="age">Age: *</label>
-                    <input type="number" id="age" name="age" required readonly>
-                    <span class="error" id="ageError"></span>
+        </section>
+
+        <!-- Author & Creator Section -->
+        <section id="author-creator" class="author-creator">
+            <div class="container">
+                <div class="author-header">
+                    <h2>AUTOR & TVORCA</h2>
+                    <h3>VLADIMIR SNEZHIK</h3>
+                    <p>
+                        je choreograf a tanečník, ktorý bol dlhé roky medzinárodným prezentérom rôznych fitness konceptov a precestoval takmer celý svet. V roku 2006 prišiel s myšlienkou konceptu, ktorý rozvíja celé telo a nazval ho PortDeBras.
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email: *</label>
-                    <input type="email" id="email" name="email" required>
-                    <span class="error" id="emailError"></span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="phone">Phone Number: *</label>
-                    <div class="phone-input">
-                        <select id="phonePrefix" name="phonePrefix">
-                            <option value="+421">+421</option>
-                            <option value="+420">+420</option>
-                        </select>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="facility">Facility Type: *</label>
-                    <select id="facility" name="facility" required>
-                        <option value="">Select Facility</option>
-                        <option value="indoor">Indoor</option>
-                        <option value="outdoor">Outdoor</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="sport">Sport: *</label>
-                    <select id="sport" name="sport" required>
-                        <option value="">Select Sport</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="equipment">Equipment: *</label>
-                    <select id="equipment" name="equipment" required>
-                        <option value="">Select Equipment</option>
-                    </select>
+                <div class="author-images">
+                    <img src="img/snezik_profil.jpg" alt="Vladimir Snezhik Portrait">
+                    <img src="img/snezik2.jpg" alt="Vladimir Snezhik Teaching">
+                    <img src="img/snezik3.jpg" alt="Vladimir Snezhik Sitting">
+                    <img src="img/snezik4.jpg" alt="Vladimir Snezhik Chair">
                 </div>
             </div>
-            <div class="form-group">
-                <label>Additional Services:</label>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="coach" name="services" value="coach">
-                    <label for="coach">Coach</label>
-                    <input type="checkbox" id="refreshments" name="services" value="refreshments">
-                    <label for="refreshments">Refreshments</label>
-                    <input type="checkbox" id="other" name="services" value="other">
-                    <label for="other">Other</label>
-                </div>
-                <input type="text" id="otherService" name="otherService" style="display: none;">
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-social">
+                <a href="https://www.facebook.com/portdebras" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/portdebras" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/portdebras" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
-            <div class="form-group">
-                <label for="comments">Comments:</label>
-                <textarea id="comments" name="comments" rows="3"></textarea>
+            <div class="footer-logo">
+                <img src="img/pnblogo.png" alt="PortDeBras Logo">
             </div>
-            <button type="submit">Submit Booking</button>
-        </form>
-        
-        <!-- Add this new section after the form -->
-        <div class="hidden-name-section">
-            <button type="button" id="revealNameBtn">Reveal Hidden Name</button>
-            <input type="text" id="hiddenName" value="Matus Bednarik" style="display: none;" readonly>
+            <div class="footer-contact">
+                <a href="tel:+421903206622">+421 903 206 622</a><br>
+                <a href="mailto:ballova.helena@gmail.com">ballova.helena@gmail.com</a>
+            </div>
         </div>
-        
-    </div>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <h2>Booking Summary</h2>
-            <div id="summary"></div>
-            <button id="confirmBooking">Confirm Booking</button>
-            <button id="closeModal">Close</button>
-        </div>
-    </div>
-    <script src="scripts.js"></script>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,208 @@
+/* Main content styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-wrapper.reverse {
+    direction: rtl;
+}
+
+.content-wrapper.reverse > * {
+    direction: ltr;
+}
+
+.text-content {
+    background-color: #b5aa8f;
+    padding: 8rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.image-content {
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+}
+
+.image-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Schedule Section */
+.schedule-section .text-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 100px;
+    height: 100%;
+    background-color: #b5aa8f;
+    transform: skew(-10deg);
+    z-index: -1;
+}
+
+.schedule-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: normal;
+    color: #333;
+}
+
+.schedule-info {
+    max-width: 400px;
+}
+
+.schedule-info p {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.schedule-info .day {
+    font-style: italic;
+}
+
+.schedule-info .time {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.schedule-info .location {
+    text-decoration: underline;
+    margin-top: 2rem;
+    color: #333;
+    display: block;
+    font-size: 1.2rem;
+}
+
+.schedule-info .location:hover {
+    opacity: 0.8;
+}
+
+/* Education Section */
+.education-section .text-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 100px;
+    height: 100%;
+    background-color: #b5aa8f;
+    transform: skew(-10deg);
+    z-index: -1;
+}
+
+.education-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: normal;
+}
+
+.education-info {
+    max-width: 600px;
+}
+
+.education-info .date {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.education-info .date span {
+    text-decoration: underline;
+}
+
+.education-info .more-info {
+    display: inline-block;
+    color: #333;
+    text-decoration: underline;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Move Academy Logo */
+.move-academy {
+    max-width: 300px;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.move-academy img {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .content-wrapper.reverse {
+        direction: ltr;
+    }
+
+    .text-content {
+        padding: 4rem 2rem;
+    }
+
+    .text-content::after,
+    .text-content::before {
+        display: none;
+    }
+
+    .image-content {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .schedule-section h1,
+    .education-section h2 {
+        font-size: 2rem;
+    }
+
+    .move-academy {
+        max-width: 200px;
+    }
+}
+
+/* Add separator to the footer */
+.footer {
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        #c0976b 30%,
+        #c0976b 70%,
+        transparent
+    );
+    opacity: 1;
+} 
