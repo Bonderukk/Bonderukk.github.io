@@ -24,4 +24,23 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.remove("active");
         body.style.overflow = "auto";
     }));
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Add animate class when element comes into view
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            } else {
+                // Remove animate class when element is out of view
+                entry.target.classList.remove('animate');
+            }
+        });
+    }, {
+        threshold: 0.1 // Triggers when at least 10% of the element is visible
+    });
+
+    // Observe all list items
+    document.querySelectorAll('.benefits-content li').forEach(item => {
+        observer.observe(item);
+    });
 }); 

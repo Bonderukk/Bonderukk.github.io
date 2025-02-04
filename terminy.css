@@ -6,10 +6,13 @@
 }
 
 .content-wrapper {
+    max-width: 1400px;
+    margin: 5px auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
+    gap: 4rem;
+    align-items: center;
+    
 }
 
 .content-wrapper.reverse {
@@ -21,13 +24,16 @@
 }
 
 .text-content {
-    background-color: #b5aa8f;
-    padding: 8rem 4rem;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    gap: 0rem;
+    background-color: #b5aa8f;
+    padding: 8rem 4rem;
     position: relative;
     z-index: 1;
+    border-radius: 5px;
 }
 
 .image-content {
@@ -46,6 +52,11 @@
 }
 
 /* Schedule Section */
+.schedule-section {
+    padding: 8rem 2rem;
+    background-color: #e6e3dc;
+}
+
 .schedule-section .text-content::after {
     content: '';
     position: absolute;
@@ -65,46 +76,79 @@
     color: #333;
 }
 
+.schedule-content h1 {
+    margin-bottom: 3rem;
+}
+
+.schedule-card {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 .schedule-info {
-    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.schedule-info p {
-    margin-bottom: 0.5rem;
+.schedule-day, .schedule-time, .schedule-location {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     font-size: 1.2rem;
 }
 
-.schedule-info .day {
-    font-style: italic;
+.schedule-info i {
+    color: #c0976b;
+    font-size: 1.4rem;
+    width: 24px;
 }
 
-.schedule-info .time {
-    font-size: 1.5rem;
-    margin: 1rem 0;
+.location {
+    color: #c0976b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
 }
 
-.schedule-info .location {
-    text-decoration: underline;
-    margin-top: 2rem;
-    color: #333;
-    display: block;
-    font-size: 1.2rem;
-}
-
-.schedule-info .location:hover {
+.location:hover {
     opacity: 0.8;
+}
+
+.address {
+    color: #666;
+    margin-top: 0.5rem;
+    margin-left: 2.4rem;
+}
+
+.video-content {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.video-content video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Education Section */
 .education-section .text-content::before {
-    content: '';
     position: absolute;
     top: 0;
     left: -50px;
     width: 100px;
     height: 100%;
     background-color: #b5aa8f;
-    transform: skew(-10deg);
     z-index: -1;
 }
 
@@ -116,27 +160,58 @@
 }
 
 .education-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
     max-width: 600px;
 }
 
-.education-info .date {
+.date, .more-info {
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+/* Underline animation for date link */
+.date {
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    color: #333;
-    text-decoration: none;
-    display: block;
 }
 
-.education-info .date span {
-    text-decoration: underline;
+.date span {
+    color: black;
+    transition: color 0.3s ease;
 }
 
-.education-info .more-info {
-    display: inline-block;
-    color: #333;
-    text-decoration: underline;
-    margin-top: 1rem;
-    font-size: 1.1rem;
+.date:hover span {
+    color: #a37c4f;
+}
+
+/* Slide effect for more-info link */
+.more-info {
+    position: relative;
+    padding-right: 20px;
+}
+
+.more-info::after {
+    content: '→';
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.more-info:hover {
+    padding-right: 10px;
+}
+
+.more-info:hover::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Move Academy Logo */
@@ -172,6 +247,14 @@
 
     .image-content {
         min-height: 300px;
+    }
+
+    .schedule-section {
+        padding: 6rem 1.5rem;
+    }
+
+    .schedule-card {
+        padding: 2rem;
     }
 }
 
@@ -211,8 +294,70 @@
 .hamburger span {
     background-color: black;
 }
-
-.nav-menu li a:hover {
+.nav-menu li a {
     color: black;
+}
+.nav-menu li a:hover {
+    color: #c0976b;
     opacity: 0.8;
+}
+
+.fancy-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 30px;
+    background: white;
+    color: #c0976b;
+    text-decoration: none;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(192, 151, 107, 0.2);
+}
+
+.button-text {
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+}
+
+.button-icon {
+    margin-left: 8px;
+    transform: translateX(-5px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.fancy-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #a37c4f, #c0976b);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fancy-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 151, 107, 0.3);
+    color: white;
+}
+
+.fancy-button:hover::before {
+    opacity: 1;
+}
+
+.fancy-button:hover .button-icon {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Optional: active state animation */
+.fancy-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(192, 151, 107, 0.2);
 }
